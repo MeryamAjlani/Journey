@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -17,7 +18,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ColorPalette.darkPurple,
+      color: ColorPalette.background,
       child: TableCalendar(
         headerStyle: const HeaderStyle(
           formatButtonVisible: false,
@@ -30,11 +31,9 @@ class _CalendarState extends State<Calendar> {
         ),
         daysOfWeekStyle: const DaysOfWeekStyle(
             weekdayStyle: TextStyle(color: ColorPalette.lightGreen)),
-          
         calendarStyle: const CalendarStyle(
-          defaultTextStyle: TextStyle(
-            color: ColorPalette.pink
-          ),
+          cellMargin: EdgeInsets.all(5),
+          defaultTextStyle: TextStyle(color: ColorPalette.pink),
           weekendTextStyle:
               TextStyle(color: Color.fromARGB(255, 228, 176, 239)),
           todayDecoration: BoxDecoration(
@@ -48,12 +47,10 @@ class _CalendarState extends State<Calendar> {
           ),
           selectedTextStyle: TextStyle(color: Colors.white),
         ),
-        
         firstDay: DateTime.utc(2010, 10, 16),
         lastDay: DateTime.utc(2030, 3, 14),
         focusedDay: _focusedDay,
         calendarFormat: _calendarFormat,
-        
         selectedDayPredicate: (day) {
           // Use `selectedDayPredicate` to determine which day is currently selected.
           // If this returns true, then `day` will be marked as selected.

@@ -30,10 +30,10 @@ dependencies:
   flutter:
     sdk: flutter
   table_calendar: ^3.0.8
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  paged_vertical_calendar: ^1.1.5
+  syncfusion_flutter_charts: ^20.3.61
+  custom_rating_bar: ^2.0.4
 
 dev_dependencies:
   flutter_test:
