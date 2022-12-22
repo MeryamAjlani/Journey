@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
+import 'package:my_journey/widgets/BottomBarWidget.dart';
 import 'package:my_journey/widgets/InputWidget.dart';
 import 'package:my_journey/widgets/StandardButton.dart';
 
@@ -32,9 +33,10 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 2, 18, 89),
         leading: const Icon(Icons.arrow_back),
-        title:  Text(
-         '${DateTime.now().toString().substring(0,10)}',style: TextStyle(color: Colors.white,fontSize: 20)),
-        ),
+        title: Text('${DateTime.now().toString().substring(0, 10)}',
+            style: TextStyle(color: Colors.white, fontSize: 20)),
+      ),
+      bottomNavigationBar: BottomBar(index: 1,),
       backgroundColor: ColorPalette.background,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -42,7 +44,6 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
             key: _formKey,
             child: Column(
               children: [
-               
                 CustomInput(
                   hintText: 'task',
                   inputFormatters: [
@@ -53,7 +54,8 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                   validator: (val) {
                     if (val!.isNotEmpty) {
                       if (!val.isValidName) return 'Enter valid name';
-                    };
+                    }
+                    ;
                   },
                 ),
                 CustomButton(
@@ -110,18 +112,13 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                         ),
                       );
                     }),
-                CustomButton(
-                  width: SizeConfig.screenWidth * 2 / 5,
-                  height: SizeConfig.screenHeight / 20,
-                  onPressed: () {},
-                  text: "Save Changes ",
-                )
               ],
             ),
           ),
         ),
       ),
     );
+
   }
 }
 
