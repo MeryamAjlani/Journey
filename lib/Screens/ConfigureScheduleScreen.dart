@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/BottomBarWidget.dart';
 import 'package:my_journey/widgets/InputWidget.dart';
 import 'package:my_journey/widgets/StandardButton.dart';
 
@@ -30,13 +29,6 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
     SizeConfig sizeConfig = SizeConfig();
     sizeConfig.init(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 2, 18, 89),
-        leading: const Icon(Icons.arrow_back),
-        title: Text('${DateTime.now().toString().substring(0, 10)}',
-            style: TextStyle(color: Colors.white, fontSize: 20)),
-      ),
-      bottomNavigationBar: BottomBar(index: 1,),
       backgroundColor: ColorPalette.background,
       body: SafeArea(
         child: SingleChildScrollView(

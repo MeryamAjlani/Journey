@@ -34,6 +34,9 @@ dependencies:
   paged_vertical_calendar: ^1.1.5
   syncfusion_flutter_charts: ^20.3.61
   custom_rating_bar: ^2.0.4
+  accordion: ^2.5.1
+  percent_indicator: ^4.2.2
+  shared_preferences: ^2.0.16
 
 dev_dependencies:
   flutter_test:

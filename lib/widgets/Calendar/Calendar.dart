@@ -20,6 +20,7 @@ class _CalendarState extends State<Calendar> {
     return Container(
       color: ColorPalette.background,
       child: TableCalendar(
+        availableGestures: AvailableGestures.none,
         headerStyle: const HeaderStyle(
           formatButtonVisible: false,
           leftChevronIcon:

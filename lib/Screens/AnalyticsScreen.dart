@@ -9,14 +9,14 @@ import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:my_journey/widgets/ProgressChartWidget.dart';
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 
-class Analytics extends StatefulWidget {
-  const Analytics({Key? key}) : super(key: key);
+class AnalyticsScreen extends StatefulWidget {
+  const AnalyticsScreen({Key? key}) : super(key: key);
 
   @override
-  State<Analytics> createState() => _AnalyticsState();
+  State<AnalyticsScreen> createState() => _AnalyticsScreenState();
 }
 
-class _AnalyticsState extends State<Analytics> {
+class _AnalyticsScreenState extends State<AnalyticsScreen> {
   @override
   Widget build(BuildContext context) {
     List finishedTasks = [
@@ -32,18 +32,11 @@ class _AnalyticsState extends State<Analytics> {
     SizeConfig sizeConfig = new SizeConfig();
     sizeConfig.init(context);
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 2, 18, 89),
-          leading: Icon(Icons.arrow_back),
-          title: Text(
-            '06/06/1999',
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-        ),
+       
         backgroundColor: Color.fromARGB(255, 12, 4, 62),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 20.0,bottom:20),
+            padding: const EdgeInsets.only(top: 20.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -152,6 +145,7 @@ class _AnalyticsState extends State<Analytics> {
                   ),
                   SizedBox(
                     child: Container(
+                      margin: EdgeInsets.only(bottom: SizeConfig.screenHeight/20),
                       width: SizeConfig.screenWidth * 0.8,
                       decoration: BoxDecoration(
                           border: Border.all(color: ColorPalette.pink),
