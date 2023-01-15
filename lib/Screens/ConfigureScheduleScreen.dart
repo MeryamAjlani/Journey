@@ -38,11 +38,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
               children: [
                 CustomInput(
                   hintText: 'task',
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(
-                      RegExp(r"[a-zA-Z]+|\s"),
-                    )
-                  ],
+                 
                   validator: (val) {
                     if (val!.isNotEmpty) {
                       if (!val.isValidName) return 'Enter valid name';

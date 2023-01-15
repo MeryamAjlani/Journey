@@ -9,12 +9,12 @@ class CustomInput extends StatefulWidget {
   const CustomInput(
       {Key? key,
       required this.hintText,
-      this.inputFormatters,
       this.validator,
-      this.inputType = TextInputType.text})
+      this.onChanged,
+      this.inputType = TextInputType.name})
       : super(key: key);
   final String hintText;
-  final List<TextInputFormatter>? inputFormatters;
+  final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final TextInputType inputType;
   @override
@@ -34,9 +34,10 @@ class _CustomInputState extends State<CustomInput> {
             left: SizeConfig.screenWidth / 8,
             bottom: SizeConfig.screenWidth / 12),
         child: TextFormField(
+          onChanged: widget.onChanged,
           keyboardType: widget.inputType,
           style: TextStyle(color: ColorPalette.lightGreen),
-          inputFormatters: widget.inputFormatters,
+          
           validator: widget.validator,
           decoration: InputDecoration(
             label: Text(

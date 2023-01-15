@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_journey/Screens/AuthScreen.dart';
 import 'package:my_journey/Screens/ConfigureScheduleScreen.dart';
 import 'package:my_journey/Screens/HomeScreen.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
@@ -17,6 +18,7 @@ void main() async {
 
   // Initialize SharedPrefs instance.
   await SharedPrefs.init();
+
   runApp(const MyApp());
 }
 
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => const Home(),
+        '/': (context) => const Authscreen(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/calendar': (context) => const Home(),
         '/today': (context) => const ConfigurationScreen(),
