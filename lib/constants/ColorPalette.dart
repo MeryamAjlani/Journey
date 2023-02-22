@@ -2,9 +2,10 @@ import 'dart:ui';
 
 class ColorPalette {
   static const lightGreen = Color(0xffcdf5db);
-  static const lightBlue = Color(0xff8bd1d3);
-  static const pink = Color(0xffc0aec4);
-  static const lightPurple = Color(0xffaf7bbd);
-  static const darkPurple = Color(0xff390038);
-  static const background = Color.fromARGB(255, 12, 4, 62);
+  static const lightPink =Color(0xfff5d5e0);
+  static const pink = Color(0xffc874b2);
+  static const purple = Color(0xff7b337d);
+  static const darkPurple = Color(0xff430d4b);
+  static const background = Color(0xff210535);
+  
 }

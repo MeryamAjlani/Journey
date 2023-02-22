@@ -30,7 +30,7 @@ class _CustomButtonState extends State<CustomButton> {
         height: widget.height,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: ColorPalette.lightBlue,
+              backgroundColor: ColorPalette.lightPink,
               disabledBackgroundColor: Color.fromARGB(255, 78, 122, 123)),
           onPressed: widget.onPressed,
           child:  Text(

@@ -33,7 +33,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
     sizeConfig.init(context);
     return Scaffold(
        
-        backgroundColor: Color.fromARGB(255, 12, 4, 62),
+        backgroundColor: ColorPalette.background,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 20.0),
@@ -84,7 +84,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text("Unfinished Tasks",
-                          style: TextStyle(color: ColorPalette.lightBlue)),
+                          style: TextStyle(color: ColorPalette.lightPink)),
                     ),
                   ),
                   SizedBox(
@@ -92,7 +92,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                     child: Container(
                       width: SizeConfig.screenWidth * 0.8,
                       decoration: BoxDecoration(
-                          border: Border.all(color: ColorPalette.lightBlue),
+                          border: Border.all(color: ColorPalette.lightPink),
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
@@ -103,7 +103,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                               height: 50,
                               child: Row(children: [
                                 Icon(Icons.cancel,
-                                    color: ColorPalette.lightBlue),
+                                    color: ColorPalette.lightPink),
                                 Text(
                                   ' ${unfinishedTasks[index]}',
                                   style: TextStyle(color: ColorPalette.pink),
@@ -119,7 +119,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text("How was Your day?",
-                          style: TextStyle(color: ColorPalette.lightBlue)),
+                          style: TextStyle(color: ColorPalette.lightPink)),
                     ),
                   ),
                   Center(
@@ -127,7 +127,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                       alignment: Alignment.center,
                       size: 50,
                       filledIcon: Icons.favorite,
-                      filledColor: ColorPalette.lightPurple,
+                      filledColor: ColorPalette.purple,
                       emptyColor: ColorPalette.pink,
                       emptyIcon: Icons.heart_broken,
                       initialRating: 4,

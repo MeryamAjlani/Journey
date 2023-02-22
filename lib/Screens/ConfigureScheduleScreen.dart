@@ -73,7 +73,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                             child: Container(
                               decoration: BoxDecoration(
                                   border:
-                                      Border.all(color: ColorPalette.lightBlue),
+                                      Border.all(color: ColorPalette.lightPink),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(15))),
                               child: Padding(

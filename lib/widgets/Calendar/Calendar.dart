@@ -43,7 +43,7 @@ class _CalendarState extends State<Calendar> {
           ),
           isTodayHighlighted: true,
           selectedDecoration: BoxDecoration(
-            color: ColorPalette.lightPurple,
+            color: ColorPalette.lightPink,
             shape: BoxShape.circle,
           ),
           selectedTextStyle: TextStyle(color: Colors.white),

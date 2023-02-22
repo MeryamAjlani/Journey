@@ -20,7 +20,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 12, 4, 62),
+        backgroundColor: ColorPalette.background,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -31,7 +31,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
               width: double.infinity,
               child: Theme(
                 data: Theme.of(context)
-                    .copyWith(dividerColor: ColorPalette.lightBlue),
+                    .copyWith(dividerColor: ColorPalette.lightPink),
                 child: Column(
                   children: [
                     DataTable(
@@ -40,13 +40,13 @@ class _BudgetScreenState extends State<BudgetScreen> {
                         DataColumn(
                           label: Text("Description",
                               style: TextStyle(
-                                color: ColorPalette.lightBlue,
+                                color: ColorPalette.lightPink,
                               )),
                         ),
                         DataColumn(
                           label: Text("Amount",
                               style: TextStyle(
-                                color: ColorPalette.lightBlue,
+                                color: ColorPalette.lightPink,
                               )),
                         ),
                       ],

@@ -76,10 +76,10 @@ class _AuthscreenState extends State<Authscreen> {
                           width: SizeConfig.screenWidth * 2 / 5,
                           height: SizeConfig.screenHeight / 20,
                           onPressed: () {
-                            var res= BackService.login(
+                           /* var res= BackService.login(
                               _email,
                               _password
-                            );
+                            );*/
                           },
                           text: "Login",
                         ),

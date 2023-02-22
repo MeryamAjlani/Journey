@@ -52,7 +52,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     SizeConfig sizeConfig = new SizeConfig();
     sizeConfig.init(context);
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 12, 4, 62),
+      backgroundColor: ColorPalette.background,
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
@@ -71,7 +71,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   child: Text(
                     "My Progress :",
                     style:
-                        TextStyle(color: ColorPalette.lightBlue, fontSize: 20),
+                        TextStyle(color: ColorPalette.lightPink, fontSize: 20),
                   )),
             ),
             Padding(
@@ -89,7 +89,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             .round()
                             .toString() +
                         "%"),
-                progressColor: ColorPalette.lightBlue,
+                progressColor: ColorPalette.lightPink,
                 backgroundColor: Colors.white,
               ),
             ),
@@ -134,7 +134,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   child: Text(
                     "My Budget:",
                     style:
-                        TextStyle(color: ColorPalette.lightBlue, fontSize: 20),
+                        TextStyle(color: ColorPalette.lightPink, fontSize: 20),
                   )),
             ),
                       SizedBox(

@@ -52,17 +52,17 @@ class _CustomInputState extends State<CustomInput> {
               borderSide:
                   BorderSide(color: ColorPalette.lightGreen, width: 1.0),
             ),
-            errorStyle: TextStyle(color: ColorPalette.lightPurple),
+            errorStyle: TextStyle(color: ColorPalette.lightPink),
             errorBorder: UnderlineInputBorder(
               borderSide:
-                  BorderSide(color: ColorPalette.lightPurple, width: 1.0),
+                  BorderSide(color: ColorPalette.lightPink, width: 1.0),
             ),
             focusedErrorBorder: UnderlineInputBorder(
               borderSide:
                   BorderSide(color: ColorPalette.lightGreen, width: 1.0),
             ),
             focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: ColorPalette.lightBlue, width: 1.0),
+              borderSide: BorderSide(color: ColorPalette.lightPink, width: 1.0),
             ),
           ),
         ));

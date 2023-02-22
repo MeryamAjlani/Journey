@@ -20,7 +20,7 @@ class _ProgressChartState extends State<ProgressChart> {
 
     final List<ChartData> chartData = [
       ChartData('Finished', 25, ColorPalette.lightGreen),
-      ChartData('Unfinished', 38,ColorPalette.lightBlue ),
+      ChartData('Unfinished', 38,ColorPalette.lightPink ),
     ];
     return Center(
         child:     SizedBox(
@@ -44,7 +44,7 @@ class _ProgressChartState extends State<ProgressChart> {
 }
 
 class ChartData {
-  ChartData(this.x, this.y, [this.color = ColorPalette.lightBlue]);
+  ChartData(this.x, this.y, [this.color = ColorPalette.lightPink]);
   final String x;
   final double y;
   final Color color;
