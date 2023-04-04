@@ -35,7 +35,8 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
       ),
       backgroundColor: ColorPalette.background,
       body: SafeArea(
-        child: SizedBox(
+        child: Padding(
+          padding: EdgeInsets.only(top: SizeConfig.screenHeight/20),
             child: BlocBuilder<TasksBloc, TasksState>(
               builder: (context, state) {
                 var tasks = state.pendingTasks;
@@ -43,10 +44,9 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                     shrinkWrap: true,
                     itemCount: tasks.length,
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Padding(
+                      return  Padding(
                           padding: EdgeInsets.only(
+                            top:  10,
                               right: SizeConfig.screenWidth / 10,
                               left: SizeConfig.screenWidth / 10),
                           child: Dismissible(
@@ -65,27 +65,19 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                                       Radius.circular(15))),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: CheckboxListTile(
-                                  activeColor: ColorPalette.lightGreen,
-                                  checkboxShape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
+                                child: ListTile(
+                               trailing: Icon(Icons.edit,color: ColorPalette.lightPink,),
                                   title: Text(
                                     tasks[index].title,
                                     style: const TextStyle(color: Colors.white),
                                     textAlign: TextAlign.left,
                                   ),
-                                  value: tasks[index].isDone,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      tasks[index].isDone = value!;
-                                    });
-                                  },
+                                 
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      );
+                        );
                     });
               },
             )),
