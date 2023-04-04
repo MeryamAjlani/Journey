@@ -2,10 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
+import 'package:my_journey/widgets/DialogWidget.dart';
 import 'package:my_journey/widgets/InputWidget.dart';
 import 'package:my_journey/widgets/StandardButton.dart';
+import 'package:my_journey/widgets/TaskList.dart';
 
 class ConfigurationScreen extends StatefulWidget {
   const ConfigurationScreen({Key? key}) : super(key: key);
@@ -17,42 +21,25 @@ class ConfigurationScreen extends StatefulWidget {
 class _ConfigurationScreenState extends State<ConfigurationScreen> {
   final _formKey = GlobalKey<FormState>();
   final myController = TextEditingController();
-  List<Task> tasks = [
-    Task('feed Caramel'),
-    Task('feed Caramel'),
-    Task('feed Caramel'),
-    Task('feed Caramel'),
-    Task('feed Caramel')
-  ];
   @override
   Widget build(BuildContext context) {
     SizeConfig sizeConfig = SizeConfig();
     sizeConfig.init(context);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => DialogWidget()),
+        backgroundColor: ColorPalette.lightPink,
+        child: const Icon(Icons.add),
+      ),
       backgroundColor: ColorPalette.background,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                CustomInput(
-                  hintText: 'task',
-                 
-                  validator: (val) {
-                    if (val!.isNotEmpty) {
-                      if (!val.isValidName) return 'Enter valid name';
-                    }
-                    ;
-                  },
-                ),
-                CustomButton(
-                  width: SizeConfig.screenWidth * 2 / 5,
-                  height: SizeConfig.screenHeight / 20,
-                  onPressed: () {},
-                  text: "Add Task",
-                ),
-                ListView.builder(
+        child: SizedBox(
+            child: BlocBuilder<TasksBloc, TasksState>(
+              builder: (context, state) {
+                var tasks = state.pendingTasks;
+                return ListView.builder(
                     shrinkWrap: true,
                     itemCount: tasks.length,
                     itemBuilder: (context, index) {
@@ -83,14 +70,14 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                                   checkboxShape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20)),
                                   title: Text(
-                                    tasks[index].name,
+                                    tasks[index].title,
                                     style: const TextStyle(color: Colors.white),
                                     textAlign: TextAlign.left,
                                   ),
-                                  value: tasks[index].isChecked,
+                                  value: tasks[index].isDone,
                                   onChanged: (bool? value) {
                                     setState(() {
-                                      tasks[index].isChecked = value!;
+                                      tasks[index].isDone = value!;
                                     });
                                   },
                                 ),
@@ -99,21 +86,12 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                           ),
                         ),
                       );
-                    }),
-              ],
-            ),
-          ),
-        ),
+                    });
+              },
+            )),
       ),
     );
-
   }
-}
-
-class Task {
-  late String name;
-  late bool isChecked;
-  Task(this.name, {this.isChecked = false});
 }
 
 // ignore: camel_case_extensions

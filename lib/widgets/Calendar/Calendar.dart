@@ -46,7 +46,7 @@ class _CalendarState extends State<Calendar> {
             color: ColorPalette.lightPink,
             shape: BoxShape.circle,
           ),
-          selectedTextStyle: TextStyle(color: Colors.white),
+          selectedTextStyle: TextStyle(color: ColorPalette.pink),
         ),
         firstDay: DateTime.utc(2010, 10, 16),
         lastDay: DateTime.utc(2030, 3, 14),

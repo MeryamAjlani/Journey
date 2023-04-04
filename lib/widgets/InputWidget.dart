@@ -27,13 +27,7 @@ class _CustomInputState extends State<CustomInput> {
     SizeConfig sizeConfig = new SizeConfig();
     sizeConfig.init(context);
 
-    return Padding(
-        padding: EdgeInsets.only(
-            top: SizeConfig.screenHeight / 15,
-            right: SizeConfig.screenWidth / 8,
-            left: SizeConfig.screenWidth / 8,
-            bottom: SizeConfig.screenWidth / 12),
-        child: TextFormField(
+    return TextFormField(
           onChanged: widget.onChanged,
           keyboardType: widget.inputType,
           style: TextStyle(color: ColorPalette.lightGreen),
@@ -65,6 +59,6 @@ class _CustomInputState extends State<CustomInput> {
               borderSide: BorderSide(color: ColorPalette.lightPink, width: 1.0),
             ),
           ),
-        ));
+        );
   }
 }

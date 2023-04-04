@@ -22,10 +22,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-    List<String> headers = [
+  List<String> headers = [
     'My Calendar',
-    'My Todo List',
     'My Budget',
+    'My Todo List',
     'Receipes'
   ];
   String _header = 'My Calendar';
@@ -43,17 +43,16 @@ class _HomeState extends State<Home> {
     ConfigurationScreen()
   ];
 
-
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     List<String> tasks = [];
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: ColorPalette.darkPurple,
-          leading: const Icon(Icons.arrow_back),
+          backgroundColor: Color.fromARGB(255, 40, 7, 63),
           title: Text(_header,
-              style: TextStyle(color: Colors.white, fontSize: 20)),
+              style: TextStyle(
+                  color: Colors.white, fontSize: 20, fontFamily: 'Pacifico')),
         ),
         body: PageView(
             children: _screens,
@@ -66,7 +65,7 @@ class _HomeState extends State<Home> {
             }),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: ColorPalette.darkPurple,
+          backgroundColor: Color.fromARGB(255, 40, 7, 63),
           unselectedItemColor: Colors.white,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -83,7 +82,7 @@ class _HomeState extends State<Home> {
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: ColorPalette.lightPink,
+          selectedItemColor: ColorPalette.pink,
           onTap: _onItemTapped,
         ));
   }

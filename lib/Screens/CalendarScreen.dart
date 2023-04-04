@@ -49,6 +49,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     String date = _getDateString();
+    List<String> tasks = ['taaaaaa','taaaaaaaaaaa',"taaaaa"];
     SizeConfig sizeConfig = new SizeConfig();
     sizeConfig.init(context);
     return Scaffold(
@@ -63,96 +64,56 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   horizontal: SizeConfig.screenWidth / 15),
               child: Calendar(),
             ),
-            Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth / 15),
-              child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "My Progress :",
-                    style:
-                        TextStyle(color: ColorPalette.lightPink, fontSize: 20),
-                  )),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: SizeConfig.screenHeight / 60,
-                  horizontal: SizeConfig.screenWidth / 15),
-              child: LinearPercentIndicator(
-                barRadius: Radius.circular(20),
-                animation: true,
-                lineHeight: 20.0,
-                animationDuration: 2000,
-                percent: _finishedCount / (_finishedCount + _unfinishedCount),
-                center: Text(
-                    (_finishedCount * 100 / (_finishedCount + _unfinishedCount))
-                            .round()
-                            .toString() +
-                        "%"),
-                progressColor: ColorPalette.lightPink,
-                backgroundColor: Colors.white,
-              ),
-            ),
-            Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: SizeConfig.screenHeight / 60,
-                    horizontal: SizeConfig.screenWidth / 15),
-                child: AccordionWidget(
-                    title: 'Finished',
-                    data: ['nyaaaa', 'nyaaaa', 'nyaaaa', 'nyaaaa', 'nyaaaa'],
-                    color: ColorPalette.lightGreen)),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: SizeConfig.screenHeight / 60,
-                  horizontal: SizeConfig.screenWidth / 15),
-              child: SizedBox(
-                  child: AccordionWidget(
-                      title: 'Unfinished',
-                      data: ['nyaaaa', 'nyaaaa', 'nyaaaa', 'nyaaaa', 'nyaaaa'],
-                      color: ColorPalette.pink)),
-            ),
-         
-
-            Padding(
-              padding: EdgeInsets.symmetric(
-                    vertical: SizeConfig.screenHeight / 50,
-                    horizontal: SizeConfig.screenWidth / 15),
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: ColorPalette.lightGreen),
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 8.0, right: 8.0, top: 20, bottom: 20.0),
-                  child:  Column(
-                    children: [
-                         Padding(
-              padding:
-                  EdgeInsets.only(bottom: SizeConfig.screenHeight / 70),
-              child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "My Budget:",
-                    style:
-                        TextStyle(color: ColorPalette.lightPink, fontSize: 20),
-                  )),
-            ),
-                      SizedBox(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                          Text(
-                            "Money Spent",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text('45274 ' + '\$',
-                              style: TextStyle(color: Colors.white))
-                        ])),
-                    ],
-                  ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding:
+                    EdgeInsets.only(left: SizeConfig.screenWidth / 10,
+                    bottom: 20
+                    ),
+                child: Text(
+                  'My Tasks :',
+                  style: TextStyle(color: ColorPalette.lightGreen, fontSize: 20,fontFamily: 'Pacifico'),
                 ),
               ),
             ),
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: tasks.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          right: SizeConfig.screenWidth / 10,
+                          left: SizeConfig.screenWidth / 10,
+                          ),
+                      child: Dismissible(
+                        key: UniqueKey(),
+                        onDismissed: (direction) {
+                          // Step 2
+                          setState(() {
+                            tasks.removeAt(index);
+                          });
+                        },
+                        child: Container(
+                          height:60,
+                          decoration: BoxDecoration(
+                              border: Border(left: BorderSide(width: 4.0, color: ColorPalette.lightGreen),),
+                              ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("jriheuoghul",style: TextStyle(color: Colors.white,fontSize: 17,
+                            
+                              ),)),)
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
           ],
         ),
       )),
