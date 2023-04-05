@@ -30,21 +30,21 @@ class _CustomInputState extends State<CustomInput> {
     return TextFormField(
           onChanged: widget.onChanged,
           keyboardType: widget.inputType,
-          style: TextStyle(color: ColorPalette.lightGreen),
+          style: TextStyle(color: ColorPalette.lightPink),
           
           validator: widget.validator,
           decoration: InputDecoration(
             label: Text(
               widget.hintText,
-              style: TextStyle(color: ColorPalette.lightGreen),
+              style: TextStyle(color: ColorPalette.lightPink),
             ),
             enabledBorder: UnderlineInputBorder(
               borderSide:
-                  BorderSide(color: ColorPalette.lightGreen, width: 1.0),
+                  BorderSide(color: ColorPalette.lightPink, width: 1.0),
             ),
             border: UnderlineInputBorder(
               borderSide:
-                  BorderSide(color: ColorPalette.lightGreen, width: 1.0),
+                  BorderSide(color: ColorPalette.lightPink, width: 1.0),
             ),
             errorStyle: TextStyle(color: ColorPalette.lightPink),
             errorBorder: UnderlineInputBorder(
@@ -53,7 +53,7 @@ class _CustomInputState extends State<CustomInput> {
             ),
             focusedErrorBorder: UnderlineInputBorder(
               borderSide:
-                  BorderSide(color: ColorPalette.lightGreen, width: 1.0),
+                  BorderSide(color: ColorPalette.lightPink, width: 1.0),
             ),
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: ColorPalette.lightPink, width: 1.0),

@@ -51,7 +51,7 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   FutureOr<void> _onDeleteTask(DeleteTask event, Emitter<TasksState> emit) {
     final state = this.state;
     emit(TasksState(
-        pendingTasks: state.pendingTasks,
+        pendingTasks: state.pendingTasks..remove(event.task),
         completedTasks: state.completedTasks,
        
         removedTasks: List.from(state.removedTasks)..remove(event.task)));

@@ -11,6 +11,7 @@ import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:my_journey/widgets/Calendar/Accordion.dart';
 import 'package:my_journey/widgets/Calendar/Calendar.dart';
+import 'package:my_journey/widgets/EmptyWidget.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class CalendarScreen extends StatefulWidget {
@@ -47,7 +48,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   final int _finishedCount = 5;
   final int _unfinishedCount = 9;
-
   @override
   Widget build(BuildContext context) {
     String date = _getDateString();
@@ -75,57 +75,141 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   child: Text(
                     'My Tasks :',
                     style: TextStyle(
+                        color: ColorPalette.lightPink,
+                        fontSize: 20,
+                        fontFamily: 'Pacifico'),
+                  ),
+                ),
+              ),
+              if (tasks.isEmpty)
+                Center(
+                    child: SizedBox(
+                        child: EmptyWidget(
+                  imagePath: 'assets/images/Pink Paw.png',
+                  message: 'No tasks added yet',
+                  color: ColorPalette.lightPink,
+                )))
+              else
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: tasks.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            right: SizeConfig.screenWidth / 10,
+                            left: SizeConfig.screenWidth / 10,
+                          ),
+                          child: Dismissible(
+                            key: UniqueKey(),
+                            onDismissed: (direction) {
+                              // Step 2
+                              context
+                                  .read<TasksBloc>()
+                                  .add(DeleteTask(task: tasks[index]));
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  left: BorderSide(
+                                      width: 4.0,
+                                      color: ColorPalette.lightPink),
+                                ),
+                              ),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          tasks[index].title,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 17,
+                                          ),
+                                        )),
+                                  )),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              SizedBox(
+                height: 20,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: SizeConfig.screenWidth / 10, bottom: 20),
+                  child: Text(
+                    'My Compeleted Tasks :',
+                    style: TextStyle(
                         color: ColorPalette.lightGreen,
                         fontSize: 20,
                         fontFamily: 'Pacifico'),
                   ),
                 ),
               ),
-              ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: tasks.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          right: SizeConfig.screenWidth / 10,
-                          left: SizeConfig.screenWidth / 10,
-                        ),
-                        child: Dismissible(
-                          key: UniqueKey(),
-                          onDismissed: (direction) {
-                            // Step 2
-                            setState(() {
-                              tasks.removeAt(index);
-                            });
-                          },
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              border: Border(
-                                left: BorderSide(
-                                    width: 4.0, color: ColorPalette.lightGreen),
+              if (state.completedTasks.isEmpty)
+                Center(
+                    child: SizedBox(
+                        child: EmptyWidget(
+                            imagePath: 'assets/images/Green Paw.png',
+                            message: 'No tasks Completed yet',
+                            color: ColorPalette.lightGreen)))
+              else
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: tasks.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            right: SizeConfig.screenWidth / 10,
+                            left: SizeConfig.screenWidth / 10,
+                          ),
+                          child: Dismissible(
+                            key: UniqueKey(),
+                            onDismissed: (direction) {
+                              // Step 2
+                              context
+                                  .read<TasksBloc>()
+                                  .add(DeleteTask(task: tasks[index]));
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  left: BorderSide(
+                                      width: 4.0,
+                                      color: ColorPalette.lightGreen),
+                                ),
                               ),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          tasks[index].title,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 17,
+                                          ),
+                                        )),
+                                  )),
                             ),
-                            child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        tasks[index].title,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 17,
-                                        ),
-                                      )),
-                                )),
                           ),
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+              SizedBox(
+                height: 20,
+              )
             ],
           ),
         )),
