@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/models/Task.dart';
+import 'package:uuid/uuid.dart';
 
 class BottomSheetWidget extends StatefulWidget {
   const BottomSheetWidget({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ TextEditingController titleController = TextEditingController();
 class _BottomSheetWidgetState extends State<BottomSheetWidget> {
   @override
   Widget build(BuildContext context) {
+      var uuid = Uuid();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     return Padding(
       padding: mediaQueryData.viewInsets,
@@ -58,45 +60,52 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                             'Task title',
                             style: TextStyle(color: ColorPalette.lightPink),
                           ),
-                          enabledBorder: UnderlineInputBorder(
+                          enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: ColorPalette.lightPink, width: 1.0),
+                                 borderRadius: BorderRadius.circular(10.0),
                           ),
-                          border: UnderlineInputBorder(
+                          border: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: ColorPalette.lightPink, width: 1.0),
+                                 borderRadius: BorderRadius.circular(10.0),
                           ),
                           errorStyle: TextStyle(color: ColorPalette.lightPink),
-                          errorBorder: UnderlineInputBorder(
+                          errorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: ColorPalette.lightPink, width: 1.0),
+                                 borderRadius: BorderRadius.circular(10.0),
                           ),
-                          focusedErrorBorder: UnderlineInputBorder(
+                          focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: ColorPalette.lightPink, width: 1.0),
+                                 borderRadius: BorderRadius.circular(10.0),
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: ColorPalette.lightPink, width: 1.0),
+                                 borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
                       )),
-                  TextButton(
-                    style: ButtonStyle( backgroundColor: MaterialStatePropertyAll<Color>(ColorPalette.pink),
-                    
+                  ButtonTheme(
+                    height: 100,
+                    child: TextButton(
+                      style: ButtonStyle( backgroundColor: MaterialStatePropertyAll<Color>(ColorPalette.pink),
+                      
+                      ),
+                      onPressed: () {
+                        var task = Task(
+                            id: uuid.v4(),
+                            title: titleController.text,
+                            date: DateTime.now().toString());
+                        context.read<TasksBloc>().add(AddTask(task: task));
+                        Navigator.pop(context);
+                        titleController.text = '';
+                      },
+                      child: const Text('Add',
+                          style: TextStyle(color: Colors.white)),
                     ),
-                    onPressed: () {
-                      var task = Task(
-                          id: '3',
-                          title: titleController.text,
-                          isDone: false,
-                          date: DateTime.now().toString());
-                      context.read<TasksBloc>().add(AddTask(task: task));
-                      Navigator.pop(context);
-                      titleController.text = '';
-                    },
-                    child: const Text('Add',
-                        style: TextStyle(color: Colors.white)),
                   ),
                 ],
               ),

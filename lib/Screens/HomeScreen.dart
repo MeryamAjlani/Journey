@@ -55,6 +55,7 @@ class _HomeState extends State<Home> {
                   color: Colors.white, fontSize: 20, fontFamily: 'Pacifico')),
         ),
         body: PageView(
+          physics: NeverScrollableScrollPhysics(),
             children: _screens,
             controller: _pageController,
             onPageChanged: (page) {

@@ -53,8 +53,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
     String date = _getDateString();
     SizeConfig sizeConfig = new SizeConfig();
     sizeConfig.init(context);
+     final tasks = context.watch<TasksBloc>().state.allTasks;
     return BlocBuilder<TasksBloc, TasksState>(builder: (context, state) {
-      var tasks = state.pendingTasks;
+      
       return Scaffold(
         backgroundColor: ColorPalette.background,
         body: SafeArea(
@@ -101,15 +102,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             right: SizeConfig.screenWidth / 10,
                             left: SizeConfig.screenWidth / 10,
                           ),
-                          child: Dismissible(
-                            key: UniqueKey(),
-                            onDismissed: (direction) {
-                              // Step 2
-                              context
-                                  .read<TasksBloc>()
-                                  .add(DeleteTask(task: tasks[index]));
-                            },
-                            child: Container(
+                          child:  Container(
                               height: 60,
                               decoration: BoxDecoration(
                                 border: Border(
@@ -132,7 +125,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                         )),
                                   )),
                             ),
-                          ),
                         ),
                       );
                     }),
@@ -153,7 +145,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   ),
                 ),
               ),
-              if (state.completedTasks.isEmpty)
+              if (state.allTasks.isEmpty)
                 Center(
                     child: SizedBox(
                         child: EmptyWidget(
@@ -172,15 +164,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             right: SizeConfig.screenWidth / 10,
                             left: SizeConfig.screenWidth / 10,
                           ),
-                          child: Dismissible(
-                            key: UniqueKey(),
-                            onDismissed: (direction) {
-                              // Step 2
-                              context
-                                  .read<TasksBloc>()
-                                  .add(DeleteTask(task: tasks[index]));
-                            },
-                            child: Container(
+                          child: Container(
                               height: 60,
                               decoration: BoxDecoration(
                                 border: Border(
@@ -203,7 +187,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                         )),
                                   )),
                             ),
-                          ),
                         ),
                       );
                     }),

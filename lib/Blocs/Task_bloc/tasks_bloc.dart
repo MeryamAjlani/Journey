@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:my_journey/models/Task.dart';
 
-
 part 'tasks_event.dart';
 part 'tasks_state.dart';
 
@@ -19,44 +18,30 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   FutureOr<void> _onAddTask(AddTask event, Emitter<TasksState> emit) {
     final state = this.state;
     emit(TasksState(
-      pendingTasks: List.from(state.pendingTasks)..add(event.task),
-      completedTasks: state.completedTasks,
-  
-      removedTasks: state.removedTasks,
+      allTasks: List.from(state.allTasks)..add(event.task),
     ));
   }
 
   FutureOr<void> _onUpdateTask(UpdateTask event, Emitter<TasksState> emit) {
+    print('nyaaa----------------------------------------');
+    print(event.task);
+    print('nyaaa----------------------------------------');
     final state = this.state;
     final task = event.task;
-    List<Task> pendingTasks = state.pendingTasks;
-    List<Task> completedTasks = state.completedTasks;
-
-    if (task.isDone == false) {
-        pendingTasks = List.from(pendingTasks)..remove(task);
-        completedTasks.insert(0, task.copyWith(isDone: true));
-    } else {       
-        completedTasks = List.from(completedTasks)..remove(task);
-        pendingTasks = List.from(pendingTasks)
-          ..insert(0, task.copyWith(isDone: false));
-    }
-    emit(TasksState(
-      pendingTasks: pendingTasks,
-      completedTasks: completedTasks,
-     
-      removedTasks: state.removedTasks,
-    ));
+    int index = state.allTasks.indexOf(task);
+    print(index);
+    List<Task> allTasks = List.from(state.allTasks)..remove(task);
+    task.isDone == false
+        ? allTasks.insert(index, task.copyWith(isDone: true))
+        : allTasks.insert(index, task.copyWith(isDone: false));
+    print(allTasks);
+    emit(TasksState(allTasks: List.from(allTasks)));
   }
 
   FutureOr<void> _onDeleteTask(DeleteTask event, Emitter<TasksState> emit) {
     final state = this.state;
-    emit(TasksState(
-        pendingTasks: state.pendingTasks..remove(event.task),
-        completedTasks: state.completedTasks,
-       
-        removedTasks: List.from(state.removedTasks)..remove(event.task)));
+    emit(TasksState(allTasks: List.from(state.allTasks)..remove(event.task)));
   }
-
 
   @override
   TasksState? fromJson(Map<String, dynamic> json) {
@@ -68,17 +53,10 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     return state.toMap();
   }
 
-
   FutureOr<void> _onDeleteAllTask(
       DeleteAllTasks event, Emitter<TasksState> emit) async {
-    final state = this.state;
     emit(
-      TasksState(
-        removedTasks: List.from(state.removedTasks)..clear(),
-        pendingTasks: state.pendingTasks,
-        completedTasks: state.completedTasks,
-       
-      ),
+      TasksState(allTasks: const <Task>[]),
     );
   }
 }

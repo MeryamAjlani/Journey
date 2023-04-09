@@ -1,6 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
+enum Filter {
+  all,
+  active,
+  completed,
+}
+
 // ignore: must_be_immutable
 class Task extends Equatable {
   final String id;
@@ -9,18 +15,15 @@ class Task extends Equatable {
   bool? isDone;
   bool? isDeleted;
 
-
   Task({
     required this.id,
     required this.title,
     required this.date,
     this.isDone,
     this.isDeleted,
-
   }) {
     isDone = isDone ?? false;
     isDeleted = isDeleted ?? false;
-   
   }
 
   @override
@@ -30,18 +33,15 @@ class Task extends Equatable {
         date,
         isDeleted,
         isDone,
-       
       ];
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
       'title': title,
-
       'date': date,
       'isDone': isDone,
       'isDeleted': isDeleted,
-      
     };
   }
 
@@ -52,16 +52,13 @@ class Task extends Equatable {
     String? date,
     bool? isDone,
     bool? isDeleted,
-    bool? isFavorite,
   }) {
     return Task(
       id: id ?? this.id,
       title: title ?? this.title,
-
       date: date ?? this.date,
       isDone: isDone ?? this.isDone,
       isDeleted: isDeleted ?? this.isDeleted,
-      
     );
   }
 
@@ -69,11 +66,9 @@ class Task extends Equatable {
     return Task(
       id: map['id'] as String,
       title: map['title'] as String,
-      
       date: map['date'] as String,
       isDone: map['isDone'] != null ? map['isDone'] as bool : null,
       isDeleted: map['isDeleted'] != null ? map['isDeleted'] as bool : null,
-     
     );
   }
 }
