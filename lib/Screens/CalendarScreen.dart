@@ -50,10 +50,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
   final int _unfinishedCount = 9;
   @override
   Widget build(BuildContext context) {
+    
     String date = _getDateString();
     SizeConfig sizeConfig = new SizeConfig();
     sizeConfig.init(context);
      final tasks = context.watch<TasksBloc>().state.allTasks;
+      final pendingTasks=tasks.where((element) => element.isDone==false).toList();
+    final completedTasks=tasks.where((element) => element.isDone==true).toList();
     return BlocBuilder<TasksBloc, TasksState>(builder: (context, state) {
       
       return Scaffold(
@@ -93,7 +96,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
               else
                 ListView.builder(
                     shrinkWrap: true,
-                    itemCount: tasks.length,
+                    itemCount: pendingTasks.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
@@ -117,7 +120,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          tasks[index].title,
+                                          pendingTasks[index].title,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 17,
@@ -145,7 +148,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   ),
                 ),
               ),
-              if (state.allTasks.isEmpty)
+              if (completedTasks.isEmpty)
                 Center(
                     child: SizedBox(
                         child: EmptyWidget(
@@ -155,7 +158,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
               else
                 ListView.builder(
                     shrinkWrap: true,
-                    itemCount: tasks.length,
+                    itemCount: completedTasks.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
@@ -175,17 +178,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               ),
                               child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          tasks[index].title,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 17,
-                                          ),
-                                        )),
-                                  )),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        completedTasks[index].title,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 17,
+                                        ),
+                                      ))),
                             ),
                         ),
                       );

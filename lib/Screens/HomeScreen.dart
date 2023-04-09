@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.today),
-              label: 'Today',
+              label: 'Tasks',
             ),
           ],
           currentIndex: _selectedIndex,

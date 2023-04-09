@@ -24,6 +24,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
   @override
   Widget build(BuildContext context) {
     final tasks = context.watch<TasksBloc>().state.allTasks;
+
     SizeConfig sizeConfig = SizeConfig();
     sizeConfig.init(context);
     return BlocBuilder<TasksBloc, TasksState>(
@@ -40,7 +41,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                 return BottomSheetWidget();
               },
             ),
-            backgroundColor: ColorPalette.lightPink,
+            backgroundColor: ColorPalette.pink,
             child: const Icon(Icons.add),
           ),
           backgroundColor: ColorPalette.background,
@@ -58,56 +59,60 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                             shrinkWrap: true,
                             itemCount: tasks.length,
                             itemBuilder: (context, index) {
-                              return Padding(
-                                padding: EdgeInsets.only(
-                                    top: 10,
-                                    right: SizeConfig.screenWidth / 10,
-                                    left: SizeConfig.screenWidth / 10),
-                                child: Dismissible(
-                                  key: UniqueKey(),
-                                  onDismissed: (direction) {
-                                    context
-                                        .read<TasksBloc>()
-                                        .add(DeleteTask(task: tasks[index]));
-                                  },
-                                  child: Stack(children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        border: Border(
-                                          left: BorderSide(
-                                              width: 4.0,
-                                              color: tasks[index].isDone!
-                                                  ? ColorPalette.lightGreen
-                                                  : ColorPalette.pink),
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: ListTile(
-                                          onTap: () => {
-                                            context.read<TasksBloc>().add(
-                                                UpdateTask(task: tasks[index]))
-                                          },
-                                          trailing: tasks[index].isDone!
-                                              ? Transform.rotate(
-                                                  angle: -math.pi / 4,
-                                                  child: SizedBox(
-                                                      height: 30,
-                                                      width: 30,
-                                                      child: Image.asset(
-                                                          'assets/images/Green Paw.png')),
-                                                )
-                                              : null,
-                                          title: Text(
-                                            tasks[index].title,
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                            textAlign: TextAlign.left,
+                              return InkWell(
+                                highlightColor: ColorPalette.lightPink,
+                                splashColor: ColorPalette.lightPink,
+                                child: Ink(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        top: 10,
+                                        right: SizeConfig.screenWidth / 10,
+                                        left: SizeConfig.screenWidth / 10),
+                                    child: Dismissible(
+                                      key: UniqueKey(),
+                                      onDismissed: (direction) {
+                                        context
+                                            .read<TasksBloc>()
+                                            .add(DeleteTask(task: tasks[index]));
+                                      },
+                                      child: Ink(
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              left: BorderSide(
+                                                  width: 4.0,
+                                                  color: tasks[index].isDone!
+                                                      ? ColorPalette.lightGreen
+                                                      : ColorPalette.pink),
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: ListTile(
+                                              onTap: () => {
+                                                context.read<TasksBloc>().add(
+                                                    UpdateTask(task: tasks[index]))
+                                              },
+                                              trailing: tasks[index].isDone!
+                                                  ? Transform.rotate(
+                                                      angle: -math.pi / 4,
+                                                      child: SizedBox(
+                                                          height: 30,
+                                                          width: 30,
+                                                          child: Image.asset(
+                                                              'assets/images/Green Paw.png')),
+                                                    )
+                                                  : null,
+                                              title: Text(
+                                                tasks[index].title,
+                                                style: const TextStyle(
+                                                    color: Colors.white),
+                                                textAlign: TextAlign.left,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
                                     ),
-                                  ]),
+                                  ),
                                 ),
                               );
                             })),
