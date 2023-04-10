@@ -41,7 +41,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ProgressChart(),
+               
                   Padding(
                     padding:  EdgeInsets.only(left: SizeConfig.screenWidth/8, bottom: 20),
                     child: Align(

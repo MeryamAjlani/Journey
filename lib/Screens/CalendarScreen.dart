@@ -7,11 +7,13 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
+import 'package:my_journey/Screens/ConfigureScheduleScreen.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:my_journey/widgets/Calendar/Accordion.dart';
 import 'package:my_journey/widgets/Calendar/Calendar.dart';
 import 'package:my_journey/widgets/EmptyWidget.dart';
+import 'package:my_journey/widgets/ProgressChartWidget.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class CalendarScreen extends StatefulWidget {
@@ -46,8 +48,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return result;
   }
 
-  final int _finishedCount = 5;
-  final int _unfinishedCount = 9;
   @override
   Widget build(BuildContext context) {
     
@@ -60,6 +60,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return BlocBuilder<TasksBloc, TasksState>(builder: (context, state) {
       
       return Scaffold(
+       
         backgroundColor: ColorPalette.background,
         body: SafeArea(
             child: SingleChildScrollView(
@@ -67,10 +68,14 @@ class _CalendarScreenState extends State<CalendarScreen> {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                    vertical: SizeConfig.screenHeight / 15,
+                    
                     horizontal: SizeConfig.screenWidth / 15),
                 child: Calendar(),
+                 
               ),
+
+              
+                pendingTasks.isEmpty && completedTasks.isEmpty ?Container(height:100,child: Align(alignment: Alignment.center,child: Text('No data added to display charts',style: TextStyle(color: ColorPalette.lightPink),)),):ProgressChart(numFinished: completedTasks.length.toDouble(),numUnfinished:pendingTasks.length.toDouble()),
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(

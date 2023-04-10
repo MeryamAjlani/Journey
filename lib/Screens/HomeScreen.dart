@@ -39,8 +39,9 @@ class _HomeState extends State<Home> {
   PageController _pageController = PageController();
   List<Widget> _screens = [
     CalendarScreen(),
+    ConfigurationScreen(),
     BudgetScreen(),
-    ConfigurationScreen()
+
   ];
 
   int _selectedIndex = 0;
@@ -73,14 +74,15 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.calendar_month),
               label: 'Calendar',
             ),
+               BottomNavigationBarItem(
+              icon: Icon(Icons.today),
+              label: 'Tasks',
+            ),
             BottomNavigationBarItem(
               icon: Icon(Icons.monetization_on),
               label: 'Budget',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.today),
-              label: 'Tasks',
-            ),
+         
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: ColorPalette.pink,
