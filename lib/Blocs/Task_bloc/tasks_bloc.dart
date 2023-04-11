@@ -23,9 +23,7 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   }
 
   FutureOr<void> _onUpdateTask(UpdateTask event, Emitter<TasksState> emit) {
-    print('nyaaa----------------------------------------');
-    print(event.task);
-    print('nyaaa----------------------------------------');
+
     final state = this.state;
     final task = event.task;
     int index = state.allTasks.indexOf(task);

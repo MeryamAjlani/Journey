@@ -74,7 +74,20 @@ class _CalendarScreenState extends State<CalendarScreen> {
                  
               ),
 
-              
+               Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: SizeConfig.screenWidth / 10, bottom: 20),
+                  child: Text(
+                    'My Progress :',
+                    style: TextStyle(
+                        color: ColorPalette.lightPink,
+                        fontSize: 20,
+                        fontFamily: 'Pacifico'),
+                  ),
+                ),
+              ),
                 pendingTasks.isEmpty && completedTasks.isEmpty ?Container(height:100,child: Align(alignment: Alignment.center,child: Text('No data added to display charts',style: TextStyle(color: ColorPalette.lightPink),)),):ProgressChart(numFinished: completedTasks.length.toDouble(),numUnfinished:pendingTasks.length.toDouble()),
               Align(
                 alignment: Alignment.topLeft,

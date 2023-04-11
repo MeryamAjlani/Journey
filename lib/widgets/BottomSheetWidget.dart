@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
+import 'package:my_journey/constants/WidgetStyle.dart';
 import 'package:my_journey/models/Task.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:my_journey/widgets/ShakeStateWidget.dart';
@@ -64,39 +65,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                           controller: titleController,
                           style: TextStyle(
                               color: Color.fromARGB(255, 237, 216, 241)),
-                          decoration: InputDecoration(
-                            label: Text(
-                              'Task title',
-                              style: TextStyle(color: ColorPalette.lightPink),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ColorPalette.lightPink, width: 1.0),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ColorPalette.lightPink, width: 1.0),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            errorStyle:
-                                TextStyle(color: ColorPalette.lightPink),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ColorPalette.lightPink, width: 1.0),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ColorPalette.lightPink, width: 1.0),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ColorPalette.lightPink, width: 1.0),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
+                          decoration: WidgetStyle.getInputDecoration('Task Title')
                         ),
                       )),
                   Padding(
@@ -108,15 +77,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                           height: 40,
                           width: 90,
                           child: TextButton(
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              )),
-                              backgroundColor: MaterialStatePropertyAll<Color>(
-                                  ColorPalette.purple),
-                            ),
+                            style: WidgetStyle.getButtonStyle(ColorPalette.purple),
                             onPressed: () {
                               Navigator.pop(context);
                             },
@@ -128,17 +89,9 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                           height: 40,
                           width: 90,
                           child: TextButton(
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              )),
-                              backgroundColor: MaterialStatePropertyAll<Color>(
-                                  ColorPalette.pink),
-                            ),
+                            style: WidgetStyle.getButtonStyle(ColorPalette.pink),
                             onPressed: () {
-                              print(titleController.text);
+                            
                               setState(() {
                                 _isTextFieldError =
                                     (titleController.text.isEmpty);

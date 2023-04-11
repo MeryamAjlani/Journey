@@ -6,7 +6,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:my_journey/Services/BackService.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/InputWidget.dart';
 import 'package:my_journey/widgets/StandardButton.dart';
 
 class Authscreen extends StatefulWidget {
@@ -50,28 +49,8 @@ class _AuthscreenState extends State<Authscreen> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        CustomInput(
-                          onChanged: (value) => {_email = value},
-                          hintText: 'Email',
-                      
-                          validator: (val) {
-                            if (val!.isNotEmpty) {
-                              if (!val.isValidName) return 'Enter valid name';
-                            }
-                            ;
-                          },
-                        ),
-                        CustomInput(
-                          onChanged: (value) => {_password = value},
-                          hintText: 'Password',
-                      
-                          validator: (val) {
-                            if (val!.isNotEmpty) {
-                              if (!val.isValidName) return 'Enter valid name';
-                            }
-                            ;
-                          },
-                        ),
+                   
+                 
                         CustomButton(
                           width: SizeConfig.screenWidth * 2 / 5,
                           height: SizeConfig.screenHeight / 20,

@@ -24,8 +24,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<String> headers = [
     'My Calendar',
-    'My Budget',
     'My Todo List',
+    'My Budget',
     'Receipes'
   ];
   String _header = 'My Calendar';

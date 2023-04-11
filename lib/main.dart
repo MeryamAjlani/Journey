@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_journey/Blocs/budget_bloc/budget_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => SwitchBloc(),
         ),
+        BlocProvider(create: (context) => BudgetBloc())
       ],
       child: BlocBuilder<SwitchBloc, SwitchState>(
         builder: (context, state) {
