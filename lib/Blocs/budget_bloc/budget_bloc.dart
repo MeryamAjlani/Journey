@@ -18,9 +18,13 @@ class BudgetBloc extends Bloc<SpendingsEntrysEvent, BudgetState> {
   FutureOr<void> _onAddSpendingsEntry(
       AddSpendingsEntry event, Emitter<BudgetState> emit) {
     final state = this.state;
+    List<SpendingsEntry> spendings = state.allSpendings;
+    //double total = spendings.fold(0, (sum, item) => sum + item.price);
+    double total = event.entry.price + state.total;
+    print(total.toString() + "fuhuhehuzeauhefzayh ddddddddddddddddddddddddd");
     emit(BudgetState(
-      allSpendings: List.from(state.allSpendings)..add(event.entry),
-    ));
+        allSpendings: List.from(state.allSpendings)..add(event.entry),
+        total: total));
   }
 
   FutureOr<void> _onUpdateSpendingsEntry(
@@ -31,21 +35,19 @@ class BudgetBloc extends Bloc<SpendingsEntrysEvent, BudgetState> {
     List<SpendingsEntry> allSpendings = List.from(state.allSpendings)
       ..remove(SpendingsEntry);
     allSpendings.insert(
-        index,
-        entry.copyWith(
-          price: entry.price,
-          title: entry.title
-        ));
-    print(allSpendings);
+        index, entry.copyWith(price: entry.price, title: entry.title));
     emit(BudgetState(allSpendings: List.from(allSpendings)));
   }
 
   FutureOr<void> _onDeleteSpendingsEntry(
       DeleteSpendingsEntry event, Emitter<BudgetState> emit) {
     final state = this.state;
+    final entry = event.entry;
+    final total = state.total - entry.price;
     emit(BudgetState(
-        allSpendings: List.from(state.allSpendings)
-          ..remove(event.entry)));
+        allSpendings: List.from(state.allSpendings)..remove(entry),
+        total: total
+        ));
   }
 
   @override
@@ -63,5 +65,14 @@ class BudgetBloc extends Bloc<SpendingsEntrysEvent, BudgetState> {
     emit(
       BudgetState(allSpendings: const <SpendingsEntry>[]),
     );
+  }
+
+  FutureOr<void> _onGetSpendingsPerDay(
+      GetTotalBudgetSpentPerDay event, Emitter<BudgetState> emit) {
+    final state = this.state;
+    final entry = event.date;
+    List<SpendingsEntry> spendings = state.allSpendings;
+    double total = spendings.fold(0, (sum, item) => sum + item.price);
+    emit(BudgetState(allSpendings: List.from(spendings), total: total));
   }
 }

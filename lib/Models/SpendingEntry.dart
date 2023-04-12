@@ -6,14 +6,20 @@ class SpendingsEntry extends Equatable {
   final String id;
   final String title;
   final double price;
-  final int month;
+  String? date;
+   int? month;
 
-  SpendingsEntry({
-    required this.id,
-    required this.title,
-    required this.price,
-    required this.month
-  });
+  SpendingsEntry(
+      {required this.id,
+      required this.title,
+      required this.price,
+      this.month,
+      this.date
+      }) {
+    month = DateTime.now().month;
+    DateTime today = DateTime.now();
+    date = "${today.day}-${today.month}-${today.year}";
+  }
 
   @override
   List<Object?> get props => [id, title, price];
@@ -23,7 +29,7 @@ class SpendingsEntry extends Equatable {
       'id': id,
       'title': title,
       'price': price,
-      'month':month
+      'month': month
     };
   }
 
@@ -31,22 +37,21 @@ class SpendingsEntry extends Equatable {
     String? id,
     String? title,
     double? price,
-    int? month
   }) {
     return SpendingsEntry(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      price: price ?? this.price,
-      month: month ?? this.month
-    );
+        id: id ?? this.id,
+        title: title ?? this.title,
+        price: price ?? this.price,
+        month: month ?? this.month,
+        date : date ?? this.date
+        );
   }
 
   factory SpendingsEntry.fromMap(Map<String, dynamic> map) {
     return SpendingsEntry(
-      id: map['id'] as String,
-      title: map['title'] as String,
-      price: map['price'] as double,
-      month: map['month'] as int
-    );
+        id: map['id'] as String,
+        title: map['title'] as String,
+        price: map['price'] as double,
+        month: map['month'] as int);
   }
 }

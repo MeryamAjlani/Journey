@@ -6,12 +6,15 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
+import 'package:my_journey/Blocs/budget_bloc/budget_bloc.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/constants/WidgetStyle.dart';
+import 'package:my_journey/models/SpendingEntry.dart';
 import 'package:my_journey/models/Task.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:my_journey/widgets/ShakeStateWidget.dart';
 import 'package:my_journey/widgets/ShakeWidget.dart';
+import 'package:uuid/uuid.dart';
 
 class DialogWidget extends StatefulWidget {
   const DialogWidget({Key? key}) : super(key: key);
@@ -49,7 +52,7 @@ class _DialogWidgetState extends State<DialogWidget> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                   Align(
+                  Align(
                     alignment: Alignment.topLeft,
                     child: const Text(
                       'Add Entry',
@@ -78,6 +81,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                         shakeOffset: 10,
                         shakeDuration: Duration(milliseconds: 500),
                         child: TextFormField(
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                             controller: _controllerAmountField,
                             style: TextStyle(
                                 color: Color.fromARGB(255, 237, 216, 241)),
@@ -124,6 +128,15 @@ class _DialogWidgetState extends State<DialogWidget> {
                                 if (isDescriptionFieldError) {
                                   descriptionFieldErrorShakeKey.currentState
                                       ?.shakeWidget();
+                                }
+                                if (!isAmountFieldError &&
+                                    !isDescriptionFieldError) {
+                                  var id = new Uuid().v4();
+                                  var entry = SpendingsEntry(id:id,title: _controllerDescriptionField.text,price: double.parse(_controllerAmountField.text));
+                                  context
+                                      .read<BudgetBloc>()
+                                      .add(AddSpendingsEntry(entry: entry));
+                                    Navigator.pop(context);
                                 }
                               },
                               child: const Text('Add',

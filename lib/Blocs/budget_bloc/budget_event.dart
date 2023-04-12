@@ -41,5 +41,17 @@ class DeleteSpendingsEntry extends SpendingsEntrysEvent {
   List<Object> get props => [SpendingsEntry];
 }
 
+class GetTotalBudgetSpentPerDay extends SpendingsEntrysEvent {
+  final String date;
+
+  const GetTotalBudgetSpentPerDay({
+    required this.date,
+  });
+
+  @override
+  List<Object> get props => [SpendingsEntry];
+}
+
+
 
 class DeleteAllSpendingEntries extends SpendingsEntrysEvent {}

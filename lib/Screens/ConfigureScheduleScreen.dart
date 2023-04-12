@@ -24,7 +24,6 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
   @override
   Widget build(BuildContext context) {
     final tasks = context.watch<TasksBloc>().state.allTasks;
-
     SizeConfig sizeConfig = SizeConfig();
     sizeConfig.init(context);
     return BlocBuilder<TasksBloc, TasksState>(
@@ -59,22 +58,18 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                             shrinkWrap: true,
                             itemCount: tasks.length,
                             itemBuilder: (context, index) {
-                              return InkWell(
-                                highlightColor: ColorPalette.lightPink,
-                                splashColor: ColorPalette.lightPink,
-                                child: Ink(
-                                  child: Padding(
+                              return Padding(
                                     padding: EdgeInsets.only(
                                       
-                                        right: SizeConfig.screenWidth / 10,
-                                        left: SizeConfig.screenWidth / 10),
+                                      right: SizeConfig.screenWidth / 10,
+                                      left: SizeConfig.screenWidth / 10),
                                     child: Dismissible(
                                       key: UniqueKey(),
                                       onDismissed: (direction) {
                                         context.read<TasksBloc>().add(
                                             DeleteTask(task: tasks[index]));
                                       },
-                                      child: Ink(
+                                      child: Container(
                                         decoration: BoxDecoration(
                                           border: Border(
                                             left: BorderSide(
@@ -112,9 +107,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              );
+                                  );
                             },
                             separatorBuilder: (context, index) {
                               return Divider(indent: SizeConfig.screenWidth/10,
