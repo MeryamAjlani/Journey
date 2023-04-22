@@ -57,13 +57,6 @@ class GroceriesBloc extends HydratedBloc<GroceriesEvent, GroceryState> {
 
   FutureOr<void> _onDeleteAllGroceryEntry(
       DeleteAllGroceries event, Emitter<GroceryState> emit) async {
-    print('hello 1');
-    var groceries = state.allGroceries;
-    print('hello 2');
-    if (groceries.isNotEmpty) {
-      state.allGroceries.clear();
-    }
-    print('hello3');
     emit(
       const GroceryState(allGroceries: <GroceryEntry>[]),
     );
