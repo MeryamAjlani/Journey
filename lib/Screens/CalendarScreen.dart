@@ -10,8 +10,8 @@ import 'package:my_journey/screensize/ScreenSize.dart';
 
 import 'package:my_journey/widgets/Calendar/Calendar.dart';
 import 'package:my_journey/widgets/Calendar/StyledContainer.dart';
-import 'package:my_journey/widgets/EmptyWidget.dart';
-import 'package:my_journey/widgets/ProgressChartWidget.dart';
+import 'package:my_journey/widgets/Shared/EmptyWidget.dart';
+import 'package:my_journey/widgets/Charts/ProgressChartWidget.dart';
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({Key? key}) : super(key: key);

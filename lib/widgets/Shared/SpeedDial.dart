@@ -6,9 +6,9 @@ import 'package:my_journey/Blocs/groceries_bloc/groceries_bloc.dart';
 import 'package:my_journey/Blocs/groceries_bloc/groceries_event.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/ErrorWidget.dart';
-import 'package:my_journey/widgets/GroceriesAlertDialog.dart';
-import 'package:my_journey/widgets/GroceriesDialog.dart';
+import 'package:my_journey/widgets/Alert%20Dialogs/GroceriesAlertDialog.dart';
+import 'package:my_journey/widgets/Alert%20Dialogs/GroceriesDialog.dart';
+import 'package:my_journey/widgets/Shared/ErrorWidget.dart';
 
 class SpeedDialWidget extends StatelessWidget {
   const SpeedDialWidget({Key? key}) : super(key: key);

@@ -8,9 +8,9 @@ import 'package:my_journey/Blocs/groceries_bloc/groceries_state.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:intl/intl.dart';
-import 'package:my_journey/widgets/EmptyWidget.dart';
+import 'package:my_journey/widgets/Shared/EmptyWidget.dart';
 import 'dart:math' as math;
-import 'package:my_journey/widgets/SpeedDial.dart';
+import 'package:my_journey/widgets/Shared/SpeedDial.dart';
 
 class PurchaseListScreen extends StatefulWidget {
   const PurchaseListScreen({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_journey/widgets/ShakeStateWidget.dart';
+import 'package:my_journey/widgets/Shared/ShakeStateWidget.dart';
 
 class ShakeWidget extends StatefulWidget {
   const ShakeWidget({

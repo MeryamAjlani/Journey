@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/BottomSheetWidget.dart';
-import 'package:my_journey/widgets/EmptyWidget.dart';
+import 'package:my_journey/widgets/Alert%20Dialogs/BottomSheetWidget.dart';
+import 'package:my_journey/widgets/Shared/EmptyWidget.dart';
 
 import 'dart:math' as math;
 

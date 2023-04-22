@@ -3,7 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/EmptyWidget.dart';
+import 'package:my_journey/widgets/Shared/EmptyWidget.dart';
 
 class StyledContained extends StatefulWidget {
   const StyledContained(

@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:my_journey/Services/BackService.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/StandardButton.dart';
+import 'package:my_journey/widgets/Shared/StandardButton.dart';
 
 class Authscreen extends StatefulWidget {
   const Authscreen({Key? key}) : super(key: key);

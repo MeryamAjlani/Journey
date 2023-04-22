@@ -1,28 +1,33 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_journey/Blocs/groceries_bloc/groceries_bloc.dart';
-import 'package:my_journey/Blocs/groceries_bloc/groceries_event.dart';
+import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/constants/WidgetStyle.dart';
-import 'package:my_journey/models/GroceryEntry.dart';
+import 'package:my_journey/models/Task.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/ShakeStateWidget.dart';
-import 'package:my_journey/widgets/ShakeWidget.dart';
+import 'package:my_journey/widgets/Shared/ShakeStateWidget.dart';
+import 'package:my_journey/widgets/Shared/ShakeWidget.dart';
 import 'package:uuid/uuid.dart';
 
-class GroceriesDialog extends StatefulWidget {
-  const GroceriesDialog({Key? key}) : super(key: key);
+class BottomSheetWidget extends StatefulWidget {
+  const BottomSheetWidget({Key? key}) : super(key: key);
 
   @override
-  State<GroceriesDialog> createState() => _GroceriesDialogState();
+  State<BottomSheetWidget> createState() => _BottomSheetWidgetState();
 }
 
-class _GroceriesDialogState extends State<GroceriesDialog> {
+class _BottomSheetWidgetState extends State<BottomSheetWidget> {
   TextEditingController titleController = TextEditingController();
   bool _isTextFieldError = false;
   final _textFieldErrorShakeKey = GlobalKey<ShakeWidgetState>();
   @override
   Widget build(BuildContext context) {
+    var uuid = Uuid();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     return Padding(
       padding: mediaQueryData.viewInsets,
@@ -39,11 +44,10 @@ class _GroceriesDialogState extends State<GroceriesDialog> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // ignore: prefer_const_constructors
                   Align(
                     alignment: Alignment.topLeft,
                     child: const Text(
-                      'Add Grocery Entry',
+                      'Add Task',
                       style: TextStyle(color: ColorPalette.lightPink),
                     ),
                   ),
@@ -56,12 +60,12 @@ class _GroceriesDialogState extends State<GroceriesDialog> {
                         key: _textFieldErrorShakeKey,
                         shakeCount: 3,
                         shakeOffset: 10,
-                        shakeDuration: const Duration(milliseconds: 500),
+                        shakeDuration: Duration(milliseconds: 500),
                         child: TextFormField(
                           controller: titleController,
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Color.fromARGB(255, 237, 216, 241)),
-                          decoration: WidgetStyle.getInputDecoration('Title')
+                          decoration: WidgetStyle.getInputDecoration('Task Title')
                         ),
                       )),
                   Padding(
@@ -93,12 +97,13 @@ class _GroceriesDialogState extends State<GroceriesDialog> {
                                     (titleController.text.isEmpty);
                               });
                               if (!_isTextFieldError) {
-                                var entry = GroceryEntry(
+                                var task = Task(
+                                    id: uuid.v4(),
                                     title: titleController.text,
-                                    );
+                                    date: DateTime.now().toString());
                                 context
-                                    .read<GroceriesBloc>()
-                                    .add(AddGroceryEntry(groceryEntry: entry));
+                                    .read<TasksBloc>()
+                                    .add(AddTask(task: task));
                                 Navigator.pop(context);
                                 titleController.text = '';
                               } else {

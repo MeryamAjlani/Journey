@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_journey/constants/ShakeAnimation.dart';
-import 'package:my_journey/widgets/ShakeWidget.dart';
+import 'package:my_journey/widgets/Shared/ShakeWidget.dart';
 
 class ShakeWidgetState extends AnimationControllerState<ShakeWidget> {
   ShakeWidgetState(Duration duration) : super(duration);

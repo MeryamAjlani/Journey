@@ -10,8 +10,8 @@ import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/constants/WidgetStyle.dart';
 import 'package:my_journey/models/SpendingEntry.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/ShakeStateWidget.dart';
-import 'package:my_journey/widgets/ShakeWidget.dart';
+import 'package:my_journey/widgets/Shared/ShakeStateWidget.dart';
+import 'package:my_journey/widgets/Shared/ShakeWidget.dart';
 import 'package:uuid/uuid.dart';
 
 class GroceriesAlertDialog extends StatefulWidget {
@@ -28,13 +28,14 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40.0)), //this right here
+      shape:const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        decoration: const BoxDecoration(color: ColorPalette.background),
+        decoration: const BoxDecoration(color: ColorPalette.background,
+        borderRadius:BorderRadius.all(Radius.circular(10.0)) ),
         height: 200,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,

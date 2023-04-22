@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_journey/widgets/TaskTile.dart';
+import 'package:my_journey/widgets/Shared/TaskTile.dart';
 
-import '../models/Task.dart';
+import '../../models/Task.dart';
 
 class TasksList extends StatelessWidget {
   const TasksList({

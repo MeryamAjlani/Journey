@@ -7,8 +7,8 @@ import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/constants/WidgetStyle.dart';
 import 'package:my_journey/models/SpendingEntry.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/ShakeStateWidget.dart';
-import 'package:my_journey/widgets/ShakeWidget.dart';
+import 'package:my_journey/widgets/Shared/ShakeStateWidget.dart';
+import 'package:my_journey/widgets/Shared/ShakeWidget.dart';
 import 'package:uuid/uuid.dart';
 
 class DialogWidget extends StatefulWidget {

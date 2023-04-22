@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/ProgressChartWidget.dart';
+import 'package:my_journey/widgets/Charts/ProgressChartWidget.dart';
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 
 class AnalyticsScreen extends StatefulWidget {

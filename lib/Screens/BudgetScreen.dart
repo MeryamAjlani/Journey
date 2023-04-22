@@ -6,8 +6,8 @@ import 'package:my_journey/Blocs/budget_bloc/budget_bloc.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:intl/intl.dart';
-import 'package:my_journey/widgets/DialogWidget.dart';
-import 'package:my_journey/widgets/EmptyWidget.dart';
+import 'package:my_journey/widgets/Alert%20Dialogs/DialogWidget.dart';
+import 'package:my_journey/widgets/Shared/EmptyWidget.dart';
 
 
 class BudgetScreen extends StatefulWidget {
