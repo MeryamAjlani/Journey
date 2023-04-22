@@ -18,10 +18,8 @@ class BudgetBloc extends Bloc<SpendingsEntrysEvent, BudgetState> {
   FutureOr<void> _onAddSpendingsEntry(
       AddSpendingsEntry event, Emitter<BudgetState> emit) {
     final state = this.state;
-    List<SpendingsEntry> spendings = state.allSpendings;
     //double total = spendings.fold(0, (sum, item) => sum + item.price);
     double total = event.entry.price + state.total;
-    print(total.toString() + "fuhuhehuzeauhefzayh ddddddddddddddddddddddddd");
     emit(BudgetState(
         allSpendings: List.from(state.allSpendings)..add(event.entry),
         total: total));

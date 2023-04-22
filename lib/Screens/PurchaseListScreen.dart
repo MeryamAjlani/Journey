@@ -1,62 +1,65 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, curly_braces_in_flow_control_structures, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
+import 'package:my_journey/Blocs/groceries_bloc/groceries_bloc.dart';
+import 'package:my_journey/Blocs/groceries_bloc/groceries_event.dart';
+import 'package:my_journey/Blocs/groceries_bloc/groceries_state.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/BottomSheetWidget.dart';
+import 'package:intl/intl.dart';
 import 'package:my_journey/widgets/EmptyWidget.dart';
-
 import 'dart:math' as math;
+import 'package:my_journey/widgets/SpeedDial.dart';
 
-class ConfigurationScreen extends StatefulWidget {
-  const ConfigurationScreen({Key? key}) : super(key: key);
+class PurchaseListScreen extends StatefulWidget {
+  const PurchaseListScreen({Key? key}) : super(key: key);
 
   @override
-  State<ConfigurationScreen> createState() => _ConfigurationScreenState();
+  State<PurchaseListScreen> createState() => _PurchaseListScreenState();
 }
 
-class _ConfigurationScreenState extends State<ConfigurationScreen> {
-  final _formKey = GlobalKey<FormState>();
-
+class _PurchaseListScreenState extends State<PurchaseListScreen> {
   @override
   Widget build(BuildContext context) {
-    final tasks = context.watch<TasksBloc>().state.allTasks;
-    SizeConfig sizeConfig = SizeConfig();
-    sizeConfig.init(context);
-    return BlocBuilder<TasksBloc, TasksState>(
+    String date = DateFormat.yMMMEd().format(DateTime.now());
+    //final spendings = context.watch<GroceriesBlocBloc>().state.allSpendings;
+    final groceries = context.watch<GroceriesBloc>().state.allGroceries;
+     print(groceries);
+    return BlocBuilder<GroceriesBloc, GroceryState>(
+     
       builder: (context, state) {
         return Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => showModalBottomSheet<void>(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
-              ),
-              context: context,
-              isScrollControlled: true,
-              builder: (BuildContext context) {
-                return BottomSheetWidget();
-              },
-            ),
-            backgroundColor: ColorPalette.pink,
-            child: const Icon(Icons.add),
-          ),
-          backgroundColor: ColorPalette.background,
-          body: SafeArea(
-            child: Column(
-              children: [
-                Padding(
+            floatingActionButton: SpeedDialWidget(),
+            backgroundColor: ColorPalette.background,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  Padding(
                     padding: EdgeInsets.only(top: SizeConfig.screenHeight / 20),
-                    child: tasks.isEmpty
+                    child: groceries.isEmpty
                         ? EmptyWidget(
                             imagePath: "assets/images/Pink Paw.png",
-                            message: "No tasks added yet !",
+                            message: "No Groceries added yet !",
                             color: ColorPalette.lightPink)
-                        : ListView.separated(
+                        : Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: SizeConfig.screenHeight / 20,
+                                    left: SizeConfig.screenWidth / 10),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text("Grocery list for the  $date ",
+                                      style: const TextStyle(
+                                          color: ColorPalette.lightPink,
+                                          fontSize: 16)),
+                                ),
+                              ),
+                              ListView.separated(
+                                
                             shrinkWrap: true,
-                            itemCount: tasks.length,
+                            itemCount: groceries.length,
                             itemBuilder: (context, index) {
                               return Padding(
                                     padding: EdgeInsets.only(
@@ -66,28 +69,26 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                                     child: Dismissible(
                                       key: UniqueKey(),
                                       onDismissed: (direction) {
-                                        context.read<TasksBloc>().add(
-                                            DeleteTask(task: tasks[index]));
+                                        context.read<GroceriesBloc>().add(
+                                            DeleteGroceryEntry(groceryEntry: groceries[index]));
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
                                           border: Border(
                                             left: BorderSide(
                                                 width: 4.0,
-                                                color: tasks[index].isDone!
-                                                    ? ColorPalette.lightGreen
-                                                    : ColorPalette.pink),
+                                                color: ColorPalette.lightGreen,)
                                           ),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: ListTile(
                                             onTap: () => {
-                                              context.read<TasksBloc>().add(
-                                                  UpdateTask(
-                                                      task: tasks[index]))
+                                              context.read<GroceriesBloc>().add(
+                                                  UpdateGroceryEntry(
+                                                    groceryEntry: groceries[index]))
                                             },
-                                            trailing: tasks[index].isDone!
+                                            trailing: groceries[index].done
                                                 ? Transform.rotate(
                                                     angle: -math.pi / 4,
                                                     child: SizedBox(
@@ -98,7 +99,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                                                   )
                                                 : null,
                                             title: Text(
-                                              tasks[index].title,
+                                              groceries[index].title,
                                               style: const TextStyle(
                                                   color: Colors.white),
                                               textAlign: TextAlign.left,
@@ -114,41 +115,15 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                               endIndent: SizeConfig.screenWidth/10,
                               );
                             },
-                          )),
-              ],
-            ),
-          ),
-        );
+                          )
+                              
+                            ],
+                          ),
+                  ),
+                ],
+              ),
+            ));
       },
     );
-  }
-}
-
-// ignore: camel_case_extensions
-extension extString on String {
-  bool get isValidEmail {
-    final emailRegExp = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    return emailRegExp.hasMatch(this);
-  }
-
-  bool get isValidName {
-    final nameRegExp =
-        new RegExp(r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
-    return nameRegExp.hasMatch(this);
-  }
-
-  bool get isValidPassword {
-    final passwordRegExp = RegExp(
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}/pre>');
-    return passwordRegExp.hasMatch(this);
-  }
-
-  bool get isNotNull {
-    return this != null;
-  }
-
-  bool get isValidPhone {
-    final phoneRegExp = RegExp(r"^\+?0[0-9]{10}$");
-    return phoneRegExp.hasMatch(this);
   }
 }

@@ -14,22 +14,6 @@ class TaskTile extends StatelessWidget {
 
   final Task task;
 
-
-  void _editTask(BuildContext ctx) {
-    showModalBottomSheet(
-        context: ctx,
-        isScrollControlled: true,
-        builder: ((context) {
-          return SingleChildScrollView(
-            child: Container(
-              padding:
-                  EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
-              child: Text('nyaaa'),
-            ),
-          );
-        }));
-  }
-
   @override
   Widget build(BuildContext ctx) {
     return Padding(

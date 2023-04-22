@@ -8,7 +8,7 @@ import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:intl/intl.dart';
 import 'package:my_journey/widgets/DialogWidget.dart';
 import 'package:my_journey/widgets/EmptyWidget.dart';
-import 'dart:math' as math;
+
 
 class BudgetScreen extends StatefulWidget {
   const BudgetScreen({Key? key}) : super(key: key);
@@ -18,11 +18,10 @@ class BudgetScreen extends StatefulWidget {
 }
 
 class _BudgetScreenState extends State<BudgetScreen> {
-  List<bool> selected = List<bool>.generate(8, (int index) => false);
+
 
   @override
   Widget build(BuildContext context) {
-    DateTime today = DateTime.now();
     String date = DateFormat.yMMMEd().format(DateTime.now());
 
     final spendings = context.watch<BudgetBloc>().state.allSpendings;
@@ -49,6 +48,8 @@ class _BudgetScreenState extends State<BudgetScreen> {
             body: SafeArea(
               child: Column(
                 children: [
+                  
+               
                   Padding(
                     padding: EdgeInsets.only(top: SizeConfig.screenHeight / 20),
                     child: spendings.isEmpty
@@ -95,11 +96,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: ListTile(
-                                            onTap: () => {
-                                              context.read<BudgetBloc>().add(
-                                                  UpdateSpendingsEntry(
-                                                      entry: spendings[index]))
-                                            },
+                                           
                                             trailing: Text(
                                                 spendings[index]
                                                         .price

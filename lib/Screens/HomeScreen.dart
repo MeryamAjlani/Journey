@@ -10,6 +10,7 @@ import 'package:my_journey/Screens/BudgetScreen.dart';
 import 'package:my_journey/Screens/CalendarScreen.dart';
 import 'package:my_journey/Screens/ConfigureScheduleScreen.dart';
 import 'package:my_journey/Screens/NotesScreen.dart';
+import 'package:my_journey/Screens/PurchaseListScreen.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/widgets/Calendar/Calendar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
     'My Calendar',
     'My Todo List',
     'My Budget',
-    'Receipes'
+    'My Groceries List'
   ];
   String _header = 'My Calendar';
   void _onItemTapped(int value) {
@@ -41,6 +42,7 @@ class _HomeState extends State<Home> {
     CalendarScreen(),
     ConfigurationScreen(),
     BudgetScreen(),
+    PurchaseListScreen()
 
   ];
 
@@ -82,6 +84,10 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.monetization_on),
               label: 'Budget',
             ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_bag),
+              label: 'Groceries',
+            )
          
           ],
           currentIndex: _selectedIndex,

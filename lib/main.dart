@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_journey/Blocs/budget_bloc/budget_bloc.dart';
+import 'package:my_journey/Blocs/groceries_bloc/groceries_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => TasksBloc(),
+        ),
+         BlocProvider(
+          create: (context) => GroceriesBloc(),
         ),
         BlocProvider(
           create: (context) => SwitchBloc(),

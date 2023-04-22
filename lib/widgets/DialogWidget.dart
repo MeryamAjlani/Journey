@@ -1,16 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
 import 'package:my_journey/Blocs/budget_bloc/budget_bloc.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/constants/WidgetStyle.dart';
 import 'package:my_journey/models/SpendingEntry.dart';
-import 'package:my_journey/models/Task.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:my_journey/widgets/ShakeStateWidget.dart';
 import 'package:my_journey/widgets/ShakeWidget.dart';
@@ -23,7 +18,6 @@ class DialogWidget extends StatefulWidget {
   State<DialogWidget> createState() => _DialogWidgetState();
 }
 
-final _formKey = GlobalKey<FormState>();
 
 class _DialogWidgetState extends State<DialogWidget> {
   var _controllerAmountField = TextEditingController();
