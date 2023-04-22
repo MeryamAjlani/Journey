@@ -17,6 +17,7 @@ class GroceriesBloc extends HydratedBloc<GroceriesEvent, GroceryState> {
     on<UpdateGroceryEntry>(_onUpdateGroceryEntry);
     on<DeleteGroceryEntry>(_onDeleteGroceryEntry);
     on<DeleteAllGroceries>(_onDeleteAllGroceryEntry);
+    on<ClearCompleted>(_onClearCompleted);
   }
 
   FutureOr<void> _onAddGroceryEntry(
@@ -60,6 +61,15 @@ class GroceriesBloc extends HydratedBloc<GroceriesEvent, GroceryState> {
     emit(
       const GroceryState(allGroceries: <GroceryEntry>[]),
     );
+  }
+
+  FutureOr<void> _onClearCompleted(
+      ClearCompleted event, Emitter<GroceryState> emit) {
+    final state = this.state;
+    List<GroceryEntry> allGroceries = state.allGroceries;
+    final list = allGroceries.where((el) => el.done != true);
+    print(list);
+    emit(GroceryState(allGroceries: List.from(list)));
   }
 
   @override

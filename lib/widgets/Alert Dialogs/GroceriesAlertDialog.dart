@@ -94,7 +94,7 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
 
                             context
                                 .read<GroceriesBloc>()
-                                .add(DeleteAllGroceries());
+                                .add(ClearCompleted( ));
 
                             titleController.text = '';
                           } else {

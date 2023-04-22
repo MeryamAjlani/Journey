@@ -45,4 +45,9 @@ class DeleteGroceryEntry extends GroceriesEvent {
 }
 
 
+class ClearCompleted extends GroceriesEvent {
+
+}
+
+
 class DeleteAllGroceries extends GroceriesEvent {}
