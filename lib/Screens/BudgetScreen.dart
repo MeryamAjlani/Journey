@@ -8,7 +8,7 @@ import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:intl/intl.dart';
 import 'package:my_journey/widgets/Alert%20Dialogs/DialogWidget.dart';
 import 'package:my_journey/widgets/Shared/EmptyWidget.dart';
-
+import 'package:my_journey/widgets/ToggleMenu.dart';
 
 class BudgetScreen extends StatefulWidget {
   const BudgetScreen({Key? key}) : super(key: key);
@@ -18,12 +18,10 @@ class BudgetScreen extends StatefulWidget {
 }
 
 class _BudgetScreenState extends State<BudgetScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     String date = DateFormat.yMMMEd().format(DateTime.now());
-
+    List<bool> _isSelected = [true, false];
     final spendings = context.watch<BudgetBloc>().state.allSpendings;
     final total = context.watch<BudgetBloc>().state.total;
     return BlocBuilder<BudgetBloc, BudgetState>(
@@ -48,8 +46,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
             body: SafeArea(
               child: Column(
                 children: [
-                  
-               
+                  ToggleMenu(),
                   Padding(
                     padding: EdgeInsets.only(top: SizeConfig.screenHeight / 20),
                     child: spendings.isEmpty
@@ -61,7 +58,8 @@ class _BudgetScreenState extends State<BudgetScreen> {
                             children: [
                               Padding(
                                 padding: EdgeInsets.only(
-                                    bottom: SizeConfig.screenHeight / 20,left: SizeConfig.screenWidth/10),
+                                    bottom: SizeConfig.screenHeight / 20,
+                                    left: SizeConfig.screenWidth / 10),
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text("Total for $date :  $total \$",
@@ -96,7 +94,6 @@ class _BudgetScreenState extends State<BudgetScreen> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: ListTile(
-                                           
                                             trailing: Text(
                                                 spendings[index]
                                                         .price
