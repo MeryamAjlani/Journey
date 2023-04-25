@@ -19,7 +19,6 @@ class ConfigurationScreen extends StatefulWidget {
 }
 
 class _ConfigurationScreenState extends State<ConfigurationScreen> {
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

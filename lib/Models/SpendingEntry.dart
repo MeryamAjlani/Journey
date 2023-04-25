@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
 // ignore: must_be_immutable
 class SpendingsEntry extends Equatable {
@@ -7,16 +8,17 @@ class SpendingsEntry extends Equatable {
   final String title;
   final double price;
   String? date;
-   int? month;
+  int? month;
+
 
   SpendingsEntry(
       {required this.id,
       required this.title,
       required this.price,
       this.month,
-      this.date
-      }) {
+      this.date,}) {
     month = DateTime.now().month;
+
     DateTime today = DateTime.now();
     date = "${today.day}-${today.month}-${today.year}";
   }
@@ -43,8 +45,7 @@ class SpendingsEntry extends Equatable {
         title: title ?? this.title,
         price: price ?? this.price,
         month: month ?? this.month,
-        date : date ?? this.date
-        );
+        date: date ?? this.date);
   }
 
   factory SpendingsEntry.fromMap(Map<String, dynamic> map) {

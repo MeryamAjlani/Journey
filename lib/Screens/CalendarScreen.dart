@@ -1,16 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
-
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-
 import 'package:my_journey/widgets/Calendar/Calendar.dart';
 import 'package:my_journey/widgets/Calendar/StyledContainer.dart';
-import 'package:my_journey/widgets/Shared/EmptyWidget.dart';
 import 'package:my_journey/widgets/Charts/ProgressChartWidget.dart';
 
 class CalendarScreen extends StatefulWidget {

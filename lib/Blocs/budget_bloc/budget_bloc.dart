@@ -20,9 +20,11 @@ class BudgetBloc extends Bloc<SpendingsEntrysEvent, BudgetState> {
     final state = this.state;
     //double total = spendings.fold(0, (sum, item) => sum + item.price);
     double total = event.entry.price + state.total;
+    final moneyleft = state.initialBudget - state.total;
     emit(BudgetState(
         allSpendings: List.from(state.allSpendings)..add(event.entry),
-        total: total));
+        total: total,
+        budgetLeft: moneyleft));
   }
 
   FutureOr<void> _onUpdateSpendingsEntry(
@@ -42,10 +44,11 @@ class BudgetBloc extends Bloc<SpendingsEntrysEvent, BudgetState> {
     final state = this.state;
     final entry = event.entry;
     final total = state.total - entry.price;
+    final moneyleft = state.initialBudget - total;
     emit(BudgetState(
         allSpendings: List.from(state.allSpendings)..remove(entry),
-        total: total
-        ));
+        total: total,
+        budgetLeft: moneyleft));
   }
 
   @override
@@ -65,12 +68,5 @@ class BudgetBloc extends Bloc<SpendingsEntrysEvent, BudgetState> {
     );
   }
 
-  FutureOr<void> _onGetSpendingsPerDay(
-      GetTotalBudgetSpentPerDay event, Emitter<BudgetState> emit) {
-    final state = this.state;
-    final entry = event.date;
-    List<SpendingsEntry> spendings = state.allSpendings;
-    double total = spendings.fold(0, (sum, item) => sum + item.price);
-    emit(BudgetState(allSpendings: List.from(spendings), total: total));
-  }
+
 }

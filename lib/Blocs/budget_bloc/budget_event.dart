@@ -15,7 +15,7 @@ class AddSpendingsEntry extends SpendingsEntrysEvent {
   });
 
   @override
-  List<Object> get props => [SpendingsEntry];
+  List<Object> get props => [entry];
 }
 
 class UpdateSpendingsEntry extends SpendingsEntrysEvent {
@@ -26,7 +26,7 @@ class UpdateSpendingsEntry extends SpendingsEntrysEvent {
   });
 
   @override
-  List<Object> get props => [SpendingsEntry];
+  List<Object> get props => [entry];
 }
 
 
@@ -38,7 +38,7 @@ class DeleteSpendingsEntry extends SpendingsEntrysEvent {
   });
 
   @override
-  List<Object> get props => [SpendingsEntry];
+  List<Object> get props => [entry];
 }
 
 class GetTotalBudgetSpentPerDay extends SpendingsEntrysEvent {
@@ -49,9 +49,20 @@ class GetTotalBudgetSpentPerDay extends SpendingsEntrysEvent {
   });
 
   @override
-  List<Object> get props => [SpendingsEntry];
+  List<Object> get props => [date];
 }
 
 
 
 class DeleteAllSpendingEntries extends SpendingsEntrysEvent {}
+
+class GetMonthlySpendings extends SpendingsEntrysEvent {
+  final int month;
+
+  const GetMonthlySpendings({
+    required this.month,
+  });
+
+  @override
+  List<Object> get props => [month];
+}

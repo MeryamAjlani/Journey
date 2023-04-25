@@ -6,7 +6,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart';
 import 'package:my_journey/Screens/AnalyticsScreen.dart';
-import 'package:my_journey/Screens/BudgetScreen.dart';
+import 'package:my_journey/Screens/Budget/BudgetScreen.dart';
+import 'package:my_journey/Screens/Budget/MonthlyBudget.dart';
 import 'package:my_journey/Screens/CalendarScreen.dart';
 import 'package:my_journey/Screens/ConfigureScheduleScreen.dart';
 import 'package:my_journey/Screens/NotesScreen.dart';
@@ -41,7 +42,7 @@ class _HomeState extends State<Home> {
   List<Widget> _screens = [
     CalendarScreen(),
     ConfigurationScreen(),
-    BudgetScreen(),
+    MonthlyBudgetScreen(),
     PurchaseListScreen()
 
   ];
