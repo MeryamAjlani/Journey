@@ -25,7 +25,8 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
     final monthlySpendings =
         context.watch<MonthlySpendingsBloc>().state.monthlyFixedSpendings;
     final moneyLeft = context.watch<MonthlySpendingsBloc>().state.budgetLeft;
-    final initialBidget = context.watch<MonthlySpendingsBloc>().state.initialBudget;
+    final initialBidget =
+        context.watch<MonthlySpendingsBloc>().state.initialBudget;
     final percentage = moneyLeft / initialBidget;
     return BlocBuilder<MonthlySpendingsBloc, MonthlySpendingsState>(
       builder: (context, state) {
@@ -47,7 +48,7 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
                       child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            ' $moneyLeft euros left',
+                            ' $moneyLeft € left',
                             style: TextStyle(color: Colors.white, fontSize: 25),
                           )),
                     ),
@@ -77,20 +78,21 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
                         horizontal: SizeConfig.screenWidth / 15,
                         vertical: SizeConfig.screenHeight / 20),
                     child: Wrap(children: [
-                      ListView.separated(
+                      ListView.builder(
                         shrinkWrap: true,
                         itemCount: monthlySpendings!.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: EdgeInsets.symmetric(vertical: 10),
                             child: Container(
-                              height: 70,
+                              height: 80,
                               decoration: BoxDecoration(
-                                border: Border(
-                                  left: BorderSide(
-                                      width: 4.0,
-                                      color: ColorPalette.lightGreen),
+                                border: Border.all(
+                                  width: 1,
+                                  color: Color.fromARGB(89, 205, 245, 219),
                                 ),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -144,14 +146,6 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return Center(
-                            child: Divider(
-                              indent: SizeConfig.screenWidth / 10,
-                              endIndent: SizeConfig.screenWidth / 10,
                             ),
                           );
                         },

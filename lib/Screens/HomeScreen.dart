@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart';
 import 'package:my_journey/Screens/AnalyticsScreen.dart';
 import 'package:my_journey/Screens/Budget/BudgetScreen.dart';
+import 'package:my_journey/Screens/Budget/HomeBudgetScreen.dart';
 import 'package:my_journey/Screens/Budget/MonthlyBudget.dart';
 import 'package:my_journey/Screens/CalendarScreen.dart';
 import 'package:my_journey/Screens/ConfigureScheduleScreen.dart';
@@ -14,6 +15,7 @@ import 'package:my_journey/Screens/NotesScreen.dart';
 import 'package:my_journey/Screens/PurchaseListScreen.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/widgets/Calendar/Calendar.dart';
+import 'package:my_journey/widgets/Shared/SideBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
@@ -42,24 +44,24 @@ class _HomeState extends State<Home> {
   List<Widget> _screens = [
     CalendarScreen(),
     ConfigurationScreen(),
-    MonthlyBudgetScreen(),
+    HomeBudgetScreen(),
     PurchaseListScreen()
-
   ];
 
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    List<String> tasks = [];
     return Scaffold(
+        drawer: CustomDrawer(),
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Color.fromARGB(255, 40, 7, 63),
           title: Text(_header,
               style: TextStyle(
                   color: Colors.white, fontSize: 20, fontFamily: 'Pacifico')),
         ),
         body: PageView(
-          physics: NeverScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             children: _screens,
             controller: _pageController,
             onPageChanged: (page) {
@@ -77,7 +79,7 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.calendar_month),
               label: 'Calendar',
             ),
-               BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.today),
               label: 'Tasks',
             ),
@@ -89,7 +91,6 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.shopping_bag),
               label: 'Groceries',
             )
-         
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: ColorPalette.pink,

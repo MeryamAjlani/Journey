@@ -46,7 +46,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
             body: SafeArea(
               child: Column(
                 children: [
-                  ToggleMenu(),
+               
                   Padding(
                     padding: EdgeInsets.only(top: SizeConfig.screenHeight / 20),
                     child: spendings.isEmpty
