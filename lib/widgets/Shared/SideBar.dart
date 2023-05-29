@@ -12,19 +12,21 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  List<bool> _isSelected = [true,false];
+  bool light = true;
   @override
   Widget build(BuildContext context) {
     return Theme(
-       data: Theme.of(context).copyWith(
-                 canvasColor: ColorPalette.background //This will change the drawer background to blue.
-                 //other styles
-              ),
+      data: Theme.of(context).copyWith(
+          canvasColor: ColorPalette
+              .background //This will change the drawer background to blue.
+          //other styles
+          ),
       child: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             const DrawerHeader(
-              
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
@@ -39,31 +41,65 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       image: AssetImage('assets/images/background.jpg'))),
             ),
             Container(
-           
               color: ColorPalette.background,
-              child: Expanded(
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(Icons.calendar_month,color: Colors.white,),
-                      title: const Text('Calendar',style: TextStyle(color: Colors.white),),
-                      onTap: () => {},
-                    ),
+              child: Column(
+                children: [
                   ListTile(
-                      leading: const Icon(Icons.settings,color: Colors.white,),
-                      title: const Text('Settings',style: TextStyle(color: Colors.white),),
-                      onTap: () => {},
+                    leading: const Icon(
+                      Icons.calendar_month,
+                      color: Colors.white,
                     ),
-                 ListTile(
-                      leading: const Icon(Icons.color_lens,color: Colors.white,),
-                      title: const Text('Theme',style: TextStyle(color: Colors.white),),
-                      onTap: () => {},
+                    title: const Text(
+                      'Calendar',
+                      style: TextStyle(color: Colors.white),
                     ),
-                  ],
-                ),
+                    onTap: () => {Navigator.of(context).pushNamed('/calendar'),
+                           setState(() {
+              for (int index = 0; index < _isSelected.length; index++) {
+                if (index == 0) {
+                  _isSelected[index] = true;
+                } else {
+                  _isSelected[index] = false;
+                }
+              }
+            })
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Icons.settings,
+                      color: Colors.white,
+                    ),
+                    title: const Text(
+                      'Settings',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onTap: () => {Navigator.of(context).pushNamed('/settings'),
+                                    setState(() {
+              for (int index = 0; index < _isSelected.length; index++) {
+                if (index == 1) {
+                  _isSelected[index] = true;
+                } else {
+                  _isSelected[index] = false;
+                }
+              }
+            })},
+                  ),
+             
+               Switch(
+      // This bool value toggles the switch.
+      value: light,
+      activeColor: ColorPalette.pink,
+      onChanged: (bool value) {
+        // This is called when the user toggles the switch.
+        setState(() {
+          light = value;
+        });
+      },
+    )
+                ],
               ),
             ),
-        
           ],
         ),
       ),

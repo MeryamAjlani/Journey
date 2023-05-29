@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
-// ignore: must_be_immutable
+
 class SpendingsEntry extends Equatable {
   final String id;
   final String title;

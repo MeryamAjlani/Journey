@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 
 class WidgetStyle {
-  static InputDecoration getInputDecoration(String title) {
+  static InputDecoration getInputDecoration(String title,{IconData? icon}) {
     return InputDecoration(
+      prefixIcon:Icon(icon,color: ColorPalette.lightPink,) ,
       label: Text(
         title,
         style: const TextStyle(color: ColorPalette.lightPink),

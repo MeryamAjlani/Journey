@@ -54,7 +54,8 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
                         style: const TextStyle(
                             color: Color.fromARGB(255, 237, 216, 241)),
                         decoration: WidgetStyle.getInputDecoration('Amount')),
-                  )),
+                  )
+                  ),
               Padding(
                 padding: EdgeInsets.only(top: SizeConfig.screenHeight / 30),
                 child: Row(
@@ -82,7 +83,7 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
                             _isPriceFieldError = (titleController.text.isEmpty);
                           });
                           if (!_isPriceFieldError) {
-                            var id = new Uuid().v4();
+                            var id = const Uuid().v4();
                             var entry = SpendingsEntry(
                                 id: id,
                                 title: 'Groceries',

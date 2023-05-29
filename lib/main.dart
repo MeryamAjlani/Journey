@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_journey/Blocs/budget_bloc/budget_bloc.dart';
 import 'package:my_journey/Blocs/groceries_bloc/groceries_bloc.dart';
 import 'package:my_journey/Blocs/monthly_spendings/monthly_spendings_bloc.dart';
+import 'package:my_journey/Screens/ParamsScreen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -11,9 +12,8 @@ import 'package:my_journey/Screens/ConfigureScheduleScreen.dart';
 import 'package:my_journey/Screens/HomeScreen.dart';
 import 'package:my_journey/Services/AppTheme.dart';
 
-
 void main() async {
- WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: await getTemporaryDirectory(),
   );
@@ -26,18 +26,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-      return MultiBlocProvider(
+    return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => TasksBloc(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => GroceriesBloc(),
         ),
         BlocProvider(
           create: (context) => SwitchBloc(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => MonthlySpendingsBloc(),
         ),
         BlocProvider(create: (context) => BudgetBloc())
@@ -46,22 +46,21 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             title: 'Flutter Tasks App',
-             initialRoute: '/',
-             theme: state.switchValue
+            initialRoute: '/',
+            theme: state.switchValue
                 ? AppThemes.appThemeData[AppTheme.darkTheme]
                 : AppThemes.appThemeData[AppTheme.lightTheme],
-          routes: {
-            // When navigating to the "/" route, build the FirstScreen widget.
-            '/': (context) => const Home(),
-            // When navigating to the "/second" route, build the SecondScreen widget.
-            '/calendar': (context) => const Home(),
-            '/today': (context) => const ConfigurationScreen(),
-          },
-            
+            routes: {
+              // When navigating to the "/" route, build the FirstScreen widget.
+              '/': (context) => const Home(),
+              // When navigating to the "/second" route, build the SecondScreen widget.
+              '/calendar': (context) => const Home(),
+              '/today': (context) => const ConfigurationScreen(),
+              '/settings': (context) => const ParamsScreen(),
+            },
           );
         },
       ),
     );
   }
 }
-
