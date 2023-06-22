@@ -8,9 +8,9 @@ import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/models/MonthlySpending.dart';
 import 'package:my_journey/models/SpendingEntry.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
+import 'package:my_journey/widgets/Shared/CustomListTile.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import 'dart:math' as math;
 
 class MonthlyBudgetScreen extends StatefulWidget {
   const MonthlyBudgetScreen({Key? key}) : super(key: key);
@@ -23,12 +23,12 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
   @override
   Widget build(BuildContext context) {
     final monthlySpendings =
-        context.watch<MonthlySpendingsBloc>().state.monthlyFixedSpendings;
-    final moneyLeft = context.watch<MonthlySpendingsBloc>().state.budgetLeft;
+        context.watch<BudgetBloc>().state.monthlyFixedSpendings;
+    final moneyLeft = context.watch<BudgetBloc>().state.budgetLeft;
     final initialBidget =
-        context.watch<MonthlySpendingsBloc>().state.initialBudget;
+        context.watch<BudgetBloc>().state.initialBudget;
     final percentage = moneyLeft / initialBidget;
-    return BlocBuilder<MonthlySpendingsBloc, MonthlySpendingsState>(
+    return BlocBuilder<BudgetBloc, BudgetState>(
       builder: (context, state) {
         return Scaffold(
           backgroundColor: ColorPalette.background,
@@ -80,74 +80,9 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
                     child: Wrap(children: [
                       ListView.builder(
                         shrinkWrap: true,
-                        itemCount: monthlySpendings!.length,
+                        itemCount: monthlySpendings.length,
                         itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            child: Container(
-                              height: 80,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 1,
-                                  color: Color.fromARGB(89, 205, 245, 219),
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ListTile(
-                                  subtitle: monthlySpendings[index].isPaid!
-                                      ? Text(
-                                          "paid on : ${monthlySpendings[index].date}",
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  159, 255, 255, 255)),
-                                        )
-                                      : null,
-                                  onTap: () => {
-                                    context.read<MonthlySpendingsBloc>().add(
-                                        UpdateMonthlySpendingsEntry(
-                                            entry: monthlySpendings[index]))
-                                  },
-                                  leading: Icon(
-                                    monthlySpendings[index].icon,
-                                    color: ColorPalette.lightGreen,
-                                    size: 25,
-                                  ),
-                                  trailing: monthlySpendings[index].isPaid!
-                                      ? Transform.rotate(
-                                          angle: -math.pi / 4,
-                                          child: SizedBox(
-                                              height: 30,
-                                              width: 30,
-                                              child: Image.asset(
-                                                  'assets/images/Green Paw.png')),
-                                        )
-                                      : null,
-                                  title: Row(
-                                    children: [
-                                      Text(
-                                        monthlySpendings[index].title,
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: SizeConfig.screenWidth / 4),
-                                        child: Text(
-                                            '${monthlySpendings[index].price} €',
-                                            style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 255, 255, 255))),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
+                          return CustomListTile(title: monthlySpendings[index].title,date:  monthlySpendings[index].date,icon:  monthlySpendings[index].icon,status:  monthlySpendings[index].isPaid,);
                         },
                       ),
                     ]),
@@ -161,3 +96,4 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
     );
   }
 }
+
