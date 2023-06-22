@@ -10,6 +10,7 @@ import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/constants/WidgetStyle.dart';
 import 'package:my_journey/models/SpendingEntry.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
+import 'package:my_journey/widgets/Shared/CustomShake%20Widget.dart';
 import 'package:my_journey/widgets/Shared/ShakeStateWidget.dart';
 import 'package:my_journey/widgets/Shared/ShakeWidget.dart';
 import 'package:uuid/uuid.dart';
@@ -42,20 +43,9 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
             children: [
               Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: ShakeWidget(
-                    key: _priceFieldErrorShakeKey,
-                    shakeCount: 3,
-                    shakeOffset: 10,
-                    shakeDuration: const Duration(milliseconds: 500),
-                    child: TextFormField(
-                        keyboardType: const TextInputType.numberWithOptions(
-                            decimal: true),
-                        controller: titleController,
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 237, 216, 241)),
-                        decoration: WidgetStyle.getInputDecoration('Amount')),
-                  )
+                  child:CustomShakeWidget(formKey:_priceFieldErrorShakeKey, title:'Amount', controller:titleController)
                   ),
+                  
               Padding(
                 padding: EdgeInsets.only(top: SizeConfig.screenHeight / 30),
                 child: Row(

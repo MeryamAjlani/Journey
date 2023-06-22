@@ -7,6 +7,7 @@ import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/constants/WidgetStyle.dart';
 import 'package:my_journey/models/SpendingEntry.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
+import 'package:my_journey/widgets/Shared/CustomShake%20Widget.dart';
 import 'package:my_journey/widgets/Shared/ShakeStateWidget.dart';
 import 'package:my_journey/widgets/Shared/ShakeWidget.dart';
 import 'package:uuid/uuid.dart';
@@ -55,32 +56,11 @@ class _DialogWidgetState extends State<DialogWidget> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 10),
-                    child: ShakeWidget(
-                        key: descriptionFieldErrorShakeKey,
-                        shakeCount: 3,
-                        shakeOffset: 10,
-                        shakeDuration: Duration(milliseconds: 500),
-                        child: TextFormField(
-                            controller: _controllerDescriptionField,
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 237, 216, 241)),
-                            decoration:
-                                WidgetStyle.getInputDecoration('Description'))),
+                    child:CustomShakeWidget(formKey:descriptionFieldErrorShakeKey , title:'Description' , controller: _controllerDescriptionField)      
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 10),
-                    child: ShakeWidget(
-                        key: amountFieldErrorShakeKey,
-                        shakeCount: 3,
-                        shakeOffset: 10,
-                        shakeDuration: Duration(milliseconds: 500),
-                        child: TextFormField(
-                          keyboardType: TextInputType.numberWithOptions(decimal: true),
-                            controller: _controllerAmountField,
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 237, 216, 241)),
-                            decoration:
-                                WidgetStyle.getInputDecoration('Amount'))),
+                    child:CustomShakeWidget(formKey:  amountFieldErrorShakeKey, title: 'Amount', controller:_controllerAmountField),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: SizeConfig.screenHeight / 30),

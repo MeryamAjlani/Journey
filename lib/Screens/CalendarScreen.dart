@@ -6,7 +6,7 @@ import 'package:my_journey/Blocs/Task_bloc/tasks_bloc.dart';
 import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:my_journey/widgets/Calendar/Calendar.dart';
-import 'package:my_journey/widgets/Calendar/StyledContainer.dart';
+import 'package:my_journey/widgets/Shared/StyledContainer.dart';
 import 'package:my_journey/widgets/Charts/ProgressChartWidget.dart';
 
 class CalendarScreen extends StatefulWidget {
@@ -73,8 +73,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       color: Color.fromARGB(255, 25, 4, 40)),
                   child: Column(children: [
                        SizedBox(
-                  height: 20,
-                ),
+                   height: 20,
+                 ),
                     Align(
                       alignment: Alignment.topLeft,
                       child: Padding(
@@ -105,22 +105,16 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             numUnfinished: pendingTasks.length.toDouble()),
                   ]),
                 ),
-                  SizedBox(
-                  height: 20,
-                ),
-                StyledContained(
+                
+                StyledContainer(
                     title: 'My Tasks',
                     list: pendingTasks,
                     color: ColorPalette.lightPink,
                     imageURL: 'assets/images/Pink Paw.png',
                     emptyMessage: 'No tasks added yet !'),
-                SizedBox(
-                  height: 20,
-                ),
-                StyledContained(title: 'My Completed Tasks', list: completedTasks, color:ColorPalette.lightGreen, imageURL: 'assets/images/Green Paw.png', emptyMessage: 'No completed tasks yet !'),
-                SizedBox(
-                  height: 20,
-                )
+               
+                StyledContainer(title: 'My Completed Tasks', list: completedTasks, color:ColorPalette.lightGreen, imageURL: 'assets/images/Green Paw.png', emptyMessage: 'No completed tasks yet !'),
+               
               ],
             ),
           ),
