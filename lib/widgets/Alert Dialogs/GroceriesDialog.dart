@@ -60,8 +60,8 @@ class _GroceriesDialogState extends State<GroceriesDialog> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
-                          height: 40,
-                          width: 90,
+                             height: 40,
+                                width: 120,
                           child: TextButton(
                             style: WidgetStyle.getButtonStyle(ColorPalette.purple),
                             onPressed: () {
@@ -72,8 +72,8 @@ class _GroceriesDialogState extends State<GroceriesDialog> {
                           ),
                         ),
                         SizedBox(
-                          height: 40,
-                          width: 90,
+                              height: 40,
+                                width: 120,
                           child: TextButton(
                             style: WidgetStyle.getButtonStyle(ColorPalette.pink),
                             onPressed: () {

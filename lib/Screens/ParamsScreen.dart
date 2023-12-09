@@ -26,6 +26,7 @@ class ParamsScreen extends StatefulWidget {
   State<ParamsScreen> createState() => _ParamsScreenState();
 }
 class _ParamsScreenState extends State<ParamsScreen> {
+
   var _controllerAmountField = TextEditingController();
   bool isAmountFieldError = false;
   final amountFieldErrorShakeKey = GlobalKey<ShakeWidgetState>();
@@ -63,7 +64,6 @@ class _ParamsScreenState extends State<ParamsScreen> {
   Widget build(BuildContext context) {
     List<MonthlySpendingEntry>? monthlySpendingsList =
         context.watch<BudgetBloc>().state.monthlyFixedSpendings;
-    print(monthlySpendingsList.length);
     return BlocBuilder<BudgetBloc, BudgetState>(
       builder: (context, state) {
         return Scaffold(
@@ -71,6 +71,9 @@ class _ParamsScreenState extends State<ParamsScreen> {
           appBar: AppBar(
             iconTheme: IconThemeData(color: Colors.white),
             backgroundColor: Color.fromARGB(255, 40, 7, 63),
+            title:Text("Settings",
+              style: TextStyle(
+                  color: Colors.white, fontSize: 20, fontFamily: 'Pacifico')) ,
           ),
           backgroundColor: ColorPalette.background,
           body: SafeArea(
@@ -83,12 +86,57 @@ class _ParamsScreenState extends State<ParamsScreen> {
                 const SizedBox(height: 10),
                 CustomContainer(
                   title: 'My initial Budget',
-                  widget: CustomShakeWidget(
-                    formKey: initialBudgetFieldErrorShakeKey,
-                    controller: initialBudgetController,
-                    keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
-                    title: 'Initial Budget',
+                  widget: Column(
+                    children: [
+                      CustomShakeWidget(
+                        formKey: initialBudgetFieldErrorShakeKey,
+                        controller: initialBudgetController,
+                        keyboardType:
+                            TextInputType.numberWithOptions(decimal: true),
+                        title: 'Initial Budget',
+                      ),
+                      Padding(
+                           padding: const EdgeInsets.only(top: 40),
+                        child: SizedBox(
+                                  height: 40,
+                                  width: 120,
+                                  child: ElevatedButton(
+                                    style: WidgetStyle.getButtonStyle(
+                                        ColorPalette.pink),
+                                    onPressed: () {
+                                      setState(() {
+                                        initialBudgetFieldError =
+                                            (initialBudgetController.text.isEmpty);
+                                      });
+                                      if (initialBudgetFieldError) {
+                                        initialBudgetFieldErrorShakeKey.currentState
+                                            ?.shakeWidget();
+                                      }
+                                      
+                                      if (!isAmountFieldError &&
+                                          !isDescriptionFieldError &&
+                                          _icon != null) {
+                                        var id = Uuid().v4();
+                                        var entry = MonthlySpendingEntry(
+                                            id: id,
+                                            title:
+                                                _controllerDescriptionField.text,
+                                            price: double.parse(
+                                                _controllerAmountField.text),
+                                            icon: _icon);
+                                        context.read<BudgetBloc>().add(
+                                            AddMonthlySpendingsEntry(
+                                                entry: entry));
+                                      }
+                                    },
+                                    child: const Text(
+                                      'Add',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                      ),
+                    ],
                   ),
                 ),
                 CustomContainer(

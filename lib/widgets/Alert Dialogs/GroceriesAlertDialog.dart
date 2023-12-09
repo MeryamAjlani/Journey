@@ -29,11 +29,12 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape:const RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        decoration: const BoxDecoration(color: ColorPalette.background,
-        borderRadius:BorderRadius.all(Radius.circular(10.0)) ),
+        decoration: const BoxDecoration(
+            color: ColorPalette.background,
+            borderRadius: BorderRadius.all(Radius.circular(10.0))),
         height: 200,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -43,9 +44,13 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
             children: [
               Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child:CustomShakeWidget(formKey:_priceFieldErrorShakeKey, title:'Amount', controller:titleController)
-                  ),
-                  
+                  child: CustomShakeWidget(
+                    formKey: _priceFieldErrorShakeKey,
+                    title: 'Amount',
+                    controller: titleController,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                  )),
               Padding(
                 padding: EdgeInsets.only(top: SizeConfig.screenHeight / 30),
                 child: Row(
@@ -65,7 +70,7 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
                     ),
                     SizedBox(
                       height: 40,
-                      width: 90,
+                      width: 120,
                       child: TextButton(
                         style: WidgetStyle.getButtonStyle(ColorPalette.pink),
                         onPressed: () {
@@ -83,9 +88,7 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
                                 .add(AddSpendingsEntry(entry: entry));
                             Navigator.pop(context);
 
-                            context
-                                .read<GroceriesBloc>()
-                                .add(ClearCompleted( ));
+                            context.read<GroceriesBloc>().add(ClearCompleted());
 
                             titleController.text = '';
                           } else {

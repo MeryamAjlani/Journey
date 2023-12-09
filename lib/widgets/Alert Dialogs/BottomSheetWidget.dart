@@ -77,8 +77,8 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                           ),
                         ),
                         SizedBox(
-                          height: 40,
-                          width: 90,
+                             height: 40,
+                             width: 120,
                           child: TextButton(
                             style: WidgetStyle.getButtonStyle(ColorPalette.pink),
                             onPressed: () {

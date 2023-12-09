@@ -18,6 +18,7 @@ class BudgetBloc extends Bloc<SpendingsEntrysEvent, BudgetState> {
     on<AddMonthlySpendingsEntry>(_onAddMonthlySpendingsEntry);
     on<UpdateMonthlySpendingsEntry>(_onUpdateMonthlySpendingsEntry);
     on<DeleteMonthlySpendingsEntry>(_onDeleteMonthlySpendingsEntry);
+
   }
 
   FutureOr<void> _onAddSpendingsEntry(
@@ -106,7 +107,7 @@ class BudgetBloc extends Bloc<SpendingsEntrysEvent, BudgetState> {
     final total = state.total - entry.price;
     final moneyleft = state.initialBudget - total;
     emit(BudgetState(
-        allSpendings: List.from(state.allSpendings)..remove(entry),
+        monthlyFixedSpendings: List.from(state. monthlyFixedSpendings)..remove(entry),
         total: total,
         budgetLeft: moneyleft));
   }

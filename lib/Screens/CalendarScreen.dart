@@ -37,7 +37,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
     String day = now.day.toString();
     String year = now.year.toString();
-    String result = "${months[mon + 1]} , ${day}  ${year}";
+    String result = "${months[mon - 1]} , ${day}  ${year}";
     return result;
   }
 

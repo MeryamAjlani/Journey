@@ -19,7 +19,6 @@ class DialogWidget extends StatefulWidget {
   State<DialogWidget> createState() => _DialogWidgetState();
 }
 
-
 class _DialogWidgetState extends State<DialogWidget> {
   var _controllerAmountField = TextEditingController();
   bool isAmountFieldError = false;
@@ -55,12 +54,20 @@ class _DialogWidgetState extends State<DialogWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child:CustomShakeWidget(formKey:descriptionFieldErrorShakeKey , title:'Description' , controller: _controllerDescriptionField)      
-                  ),
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: CustomShakeWidget(
+                          formKey: descriptionFieldErrorShakeKey,
+                          title: 'Description',
+                          controller: _controllerDescriptionField)),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 10),
-                    child:CustomShakeWidget(formKey:  amountFieldErrorShakeKey, title: 'Amount', controller:_controllerAmountField),
+                    child: CustomShakeWidget(
+                      formKey: amountFieldErrorShakeKey,
+                      title: 'Amount',
+                      controller: _controllerAmountField,
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: SizeConfig.screenHeight / 30),
@@ -81,8 +88,8 @@ class _DialogWidgetState extends State<DialogWidget> {
                             ),
                           ),
                           SizedBox(
-                            height: 40,
-                            width: 90,
+                                height: 40,
+                                width: 120,
                             child: TextButton(
                               style:
                                   WidgetStyle.getButtonStyle(ColorPalette.pink),
@@ -106,11 +113,15 @@ class _DialogWidgetState extends State<DialogWidget> {
                                 if (!isAmountFieldError &&
                                     !isDescriptionFieldError) {
                                   var id = new Uuid().v4();
-                                  var entry = SpendingsEntry(id:id,title: _controllerDescriptionField.text,price: double.parse(_controllerAmountField.text));
+                                  var entry = SpendingsEntry(
+                                      id: id,
+                                      title: _controllerDescriptionField.text,
+                                      price: double.parse(
+                                          _controllerAmountField.text));
                                   context
                                       .read<BudgetBloc>()
                                       .add(AddSpendingsEntry(entry: entry));
-                                    Navigator.pop(context);
+                                  Navigator.pop(context);
                                 }
                               },
                               child: const Text('Add',
