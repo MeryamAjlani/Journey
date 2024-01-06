@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_journey/constants/ColorPalette.dart';
 
 class OtpForm extends StatefulWidget {
   const OtpForm({
@@ -37,6 +38,7 @@ class _OtpFormState extends State<OtpForm> {
               height: 20,
               width: 20,
               child: TextFormField(
+                style: const TextStyle(color: PurpleColorPalette.highLight2),
                 autofocus: true,
                 controller: _num1,
                 inputFormatters: <TextInputFormatter>[
@@ -61,6 +63,7 @@ class _OtpFormState extends State<OtpForm> {
               height: 20,
               width: 20,
               child: TextFormField(
+                style: const TextStyle(color: PurpleColorPalette.highLight2),
                 autofocus: true,
                 controller: _num2,
                 inputFormatters: <TextInputFormatter>[
@@ -85,6 +88,7 @@ class _OtpFormState extends State<OtpForm> {
               height: 20,
               width: 20,
               child: TextFormField(
+                style: const TextStyle(color: PurpleColorPalette.highLight2),
                 autofocus: true,
                 controller: _num3,
                 inputFormatters: <TextInputFormatter>[
@@ -109,6 +113,7 @@ class _OtpFormState extends State<OtpForm> {
               height: 20,
               width: 20,
               child: TextFormField(
+                style: const TextStyle(color: PurpleColorPalette.highLight2),
                 autofocus: true,
                 controller: _num4,
                 inputFormatters: <TextInputFormatter>[
@@ -133,6 +138,7 @@ class _OtpFormState extends State<OtpForm> {
               height: 20,
               width: 20,
               child: TextFormField(
+                style: const TextStyle(color: PurpleColorPalette.highLight2),
                 autofocus: true,
                 controller: _num5,
                 inputFormatters: <TextInputFormatter>[
@@ -157,6 +163,7 @@ class _OtpFormState extends State<OtpForm> {
               height: 20,
               width: 20,
               child: TextFormField(
+                style: const TextStyle(color: PurpleColorPalette.highLight2),
                 autofocus: true,
                 controller: _num6,
                 inputFormatters: <TextInputFormatter>[

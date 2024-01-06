@@ -117,12 +117,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    const Text(
-                      'Forget Password?',
-                      style: TextStyle(
-                        color: PurpleColorPalette.accent,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
+                    InkWell(
+                         onTap: () {
+                            widget.controller.animateToPage(3,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.ease);
+                          },
+                      child: const Text(
+                        'Forget Password?',
+                        style: TextStyle(
+                          color: PurpleColorPalette.accent,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ],
