@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_journey/Blocs/budget_bloc/budget_bloc.dart';
 import 'package:my_journey/Blocs/groceries_bloc/groceries_bloc.dart';
 import 'package:my_journey/Blocs/monthly_spendings/monthly_spendings_bloc.dart';
+import 'package:my_journey/Screens/Authentication/AuthentificationScreen.dart';
+import 'package:my_journey/Screens/Authentication/LoginScreen.dart';
 import 'package:my_journey/Screens/ParamsScreen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,9 +53,7 @@ class MyApp extends StatelessWidget {
                 ? AppThemes.appThemeData[AppTheme.darkTheme]
                 : AppThemes.appThemeData[AppTheme.lightTheme],
             routes: {
-              // When navigating to the "/" route, build the FirstScreen widget.
-              '/': (context) => const Home(),
-              // When navigating to the "/second" route, build the SecondScreen widget.
+              '/': (context) => const AuthentificationScreen(),
               '/calendar': (context) => const Home(),
               '/today': (context) => const ConfigurationScreen(),
               '/settings': (context) => const ParamsScreen(),

@@ -10,7 +10,7 @@ import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/constants/WidgetStyle.dart';
 import 'package:my_journey/models/SpendingEntry.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/Shared/CustomShake%20Widget.dart';
+import 'package:my_journey/widgets/Shared/CustomShakeWidget.dart';
 import 'package:my_journey/widgets/Shared/ShakeStateWidget.dart';
 import 'package:my_journey/widgets/Shared/ShakeWidget.dart';
 import 'package:uuid/uuid.dart';
@@ -33,7 +33,7 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
         decoration: const BoxDecoration(
-            color: ColorPalette.background,
+            color: PurpleColorPalette.background,
             borderRadius: BorderRadius.all(Radius.circular(10.0))),
         height: 200,
         child: Padding(
@@ -44,7 +44,7 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
             children: [
               Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: CustomShakeWidget(
+                  child: CustomInputWidget(
                     formKey: _priceFieldErrorShakeKey,
                     title: 'Amount',
                     controller: titleController,
@@ -60,7 +60,8 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
                       height: 40,
                       width: 90,
                       child: TextButton(
-                        style: WidgetStyle.getButtonStyle(ColorPalette.purple),
+                        style: WidgetStyle.getButtonStyle(
+                            PurpleColorPalette.secondaryColor),
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -72,7 +73,8 @@ class _GroceriesAlertDialogState extends State<GroceriesAlertDialog> {
                       height: 40,
                       width: 120,
                       child: TextButton(
-                        style: WidgetStyle.getButtonStyle(ColorPalette.pink),
+                        style: WidgetStyle.getButtonStyle(
+                            PurpleColorPalette.accent),
                         onPressed: () {
                           setState(() {
                             _isPriceFieldError = (titleController.text.isEmpty);

@@ -53,7 +53,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
         tasks.where((element) => element.isDone == true).toList();
     return BlocBuilder<TasksBloc, TasksState>(builder: (context, state) {
       return Scaffold(
-        backgroundColor: ColorPalette.background,
+        backgroundColor: PurpleColorPalette.background,
         body: SafeArea(
             child: SingleChildScrollView(
           child: Padding(
@@ -63,7 +63,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
               children: [
                 Calendar(),
                 // LineChartSample2(),
-                  SizedBox(
+                SizedBox(
                   height: 20,
                 ),
 
@@ -72,9 +72,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       borderRadius: BorderRadius.circular(20),
                       color: Color.fromARGB(255, 25, 4, 40)),
                   child: Column(children: [
-                       SizedBox(
-                   height: 20,
-                 ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Align(
                       alignment: Alignment.topLeft,
                       child: Padding(
@@ -83,7 +83,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         child: Text(
                           'My Progress :',
                           style: TextStyle(
-                              color: ColorPalette.lightPink,
+                              color: PurpleColorPalette.highLight2,
                               fontSize: 20,
                               fontFamily: 'Pacifico'),
                         ),
@@ -96,8 +96,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   'No data added to display charts',
-                                  style:
-                                      TextStyle(color: ColorPalette.lightPink),
+                                  style: TextStyle(
+                                      color: PurpleColorPalette.highLight2),
                                 )),
                           )
                         : ProgressChart(
@@ -105,16 +105,20 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             numUnfinished: pendingTasks.length.toDouble()),
                   ]),
                 ),
-                
+
                 StyledContainer(
                     title: 'My Tasks',
                     list: pendingTasks,
-                    color: ColorPalette.lightPink,
+                    color: PurpleColorPalette.highLight2,
                     imageURL: 'assets/images/Pink Paw.png',
                     emptyMessage: 'No tasks added yet !'),
-               
-                StyledContainer(title: 'My Completed Tasks', list: completedTasks, color:ColorPalette.lightGreen, imageURL: 'assets/images/Green Paw.png', emptyMessage: 'No completed tasks yet !'),
-               
+
+                StyledContainer(
+                    title: 'My Completed Tasks',
+                    list: completedTasks,
+                    color: PurpleColorPalette.highLight1,
+                    imageURL: 'assets/images/Green Paw.png',
+                    emptyMessage: 'No completed tasks yet !'),
               ],
             ),
           ),

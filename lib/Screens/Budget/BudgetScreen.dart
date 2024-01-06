@@ -39,21 +39,20 @@ class _BudgetScreenState extends State<BudgetScreen> {
                   return DialogWidget();
                 },
               ),
-              backgroundColor: ColorPalette.pink,
+              backgroundColor: PurpleColorPalette.accent,
               child: const Icon(Icons.add),
             ),
-            backgroundColor: ColorPalette.background,
+            backgroundColor: PurpleColorPalette.background,
             body: SafeArea(
               child: Column(
                 children: [
-               
                   Padding(
                     padding: EdgeInsets.only(top: SizeConfig.screenHeight / 20),
                     child: spendings.isEmpty
                         ? EmptyWidget(
                             imagePath: "assets/images/Pink Paw.png",
                             message: "No spendings added yet !",
-                            color: ColorPalette.lightPink)
+                            color: PurpleColorPalette.highLight2)
                         : Column(
                             children: [
                               Padding(
@@ -64,7 +63,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
                                   alignment: Alignment.centerLeft,
                                   child: Text("Total for $date :  $total \$",
                                       style: const TextStyle(
-                                          color: ColorPalette.lightPink,
+                                          color: PurpleColorPalette.highLight2,
                                           fontSize: 16)),
                                 ),
                               ),
@@ -88,7 +87,8 @@ class _BudgetScreenState extends State<BudgetScreen> {
                                           border: Border(
                                             left: BorderSide(
                                                 width: 4.0,
-                                                color: ColorPalette.lightGreen),
+                                                color: PurpleColorPalette
+                                                    .highLight1),
                                           ),
                                         ),
                                         child: Padding(

@@ -18,7 +18,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ColorPalette.background,
+      color: PurpleColorPalette.background,
       child: TableCalendar(
         availableGestures: AvailableGestures.none,
         headerStyle: const HeaderStyle(
@@ -27,26 +27,26 @@ class _CalendarState extends State<Calendar> {
               Icon(Icons.arrow_left, color: Color.fromARGB(255, 224, 189, 234)),
           rightChevronIcon: Icon(Icons.arrow_right,
               color: Color.fromARGB(255, 224, 189, 234)),
-          titleTextStyle:
-              TextStyle(color: ColorPalette.pink, fontWeight: FontWeight.bold),
+          titleTextStyle: TextStyle(
+              color: PurpleColorPalette.accent, fontWeight: FontWeight.bold),
         ),
         daysOfWeekStyle: const DaysOfWeekStyle(
-            weekdayStyle: TextStyle(color: ColorPalette.lightGreen)),
+            weekdayStyle: TextStyle(color: PurpleColorPalette.highLight1)),
         calendarStyle: const CalendarStyle(
           cellMargin: EdgeInsets.all(5),
-          defaultTextStyle: TextStyle(color: ColorPalette.pink),
+          defaultTextStyle: TextStyle(color: PurpleColorPalette.accent),
           weekendTextStyle:
               TextStyle(color: Color.fromARGB(255, 228, 176, 239)),
           todayDecoration: BoxDecoration(
-            color: ColorPalette.pink,
+            color: PurpleColorPalette.accent,
             shape: BoxShape.circle,
           ),
           isTodayHighlighted: true,
           selectedDecoration: BoxDecoration(
-            color: ColorPalette.lightPink,
+            color: PurpleColorPalette.highLight2,
             shape: BoxShape.circle,
           ),
-          selectedTextStyle: TextStyle(color: ColorPalette.pink),
+          selectedTextStyle: TextStyle(color: PurpleColorPalette.accent),
         ),
         firstDay: DateTime.utc(2010, 10, 16),
         lastDay: DateTime.utc(2030, 3, 14),

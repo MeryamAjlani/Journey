@@ -6,7 +6,6 @@ import 'dart:math' as math;
 
 import 'package:my_journey/screensize/ScreenSize.dart';
 
-
 class CustomListTile extends StatefulWidget {
   const CustomListTile(
       {Key? key,
@@ -55,7 +54,7 @@ class _CustomListTileState extends State<CustomListTile> {
             },
             leading: Icon(
               widget.icon,
-              color: ColorPalette.lightGreen,
+              color: PurpleColorPalette.highLight1,
               size: 25,
             ),
             trailing: widget.status!

@@ -24,7 +24,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
       "Feed Caramel",
       "Feed Caramel",
     ];
-      List unfinishedTasks = [
+    List unfinishedTasks = [
       "Feed Caramel",
       "Feed Caramel",
       "Feed Caramel",
@@ -32,8 +32,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
     SizeConfig sizeConfig = new SizeConfig();
     sizeConfig.init(context);
     return Scaffold(
-       
-        backgroundColor: ColorPalette.background,
+        backgroundColor: PurpleColorPalette.background,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 20.0),
@@ -41,21 +40,24 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-               
                   Padding(
-                    padding:  EdgeInsets.only(left: SizeConfig.screenWidth/8, bottom: 20),
+                    padding: EdgeInsets.only(
+                        left: SizeConfig.screenWidth / 8, bottom: 20),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text("Finished Tasks",
-                          style: TextStyle(color: ColorPalette.lightGreen)),
+                          style:
+                              TextStyle(color: PurpleColorPalette.highLight1)),
                     ),
                   ),
                   SizedBox(
-                    height: (SizeConfig.screenHeight / 16) * finishedTasks.length,
+                    height:
+                        (SizeConfig.screenHeight / 16) * finishedTasks.length,
                     child: Container(
                       width: SizeConfig.screenWidth * 0.8,
                       decoration: BoxDecoration(
-                          border: Border.all(color: ColorPalette.lightGreen),
+                          border:
+                              Border.all(color: PurpleColorPalette.highLight1),
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
@@ -67,11 +69,12 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                               child: Row(children: [
                                 Icon(
                                   Icons.check,
-                                  color: ColorPalette.lightGreen,
+                                  color: PurpleColorPalette.highLight1,
                                 ),
                                 Text(
                                   ' ${finishedTasks[index]}',
-                                  style: TextStyle(color: ColorPalette.pink),
+                                  style: TextStyle(
+                                      color: PurpleColorPalette.accent),
                                 )
                               ]),
                             );
@@ -79,20 +82,23 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                     ),
                   ),
                   Padding(
-                    padding:
-                         EdgeInsets.only(left: SizeConfig.screenWidth/8, bottom: 20, top: 40),
+                    padding: EdgeInsets.only(
+                        left: SizeConfig.screenWidth / 8, bottom: 20, top: 40),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text("Unfinished Tasks",
-                          style: TextStyle(color: ColorPalette.lightPink)),
+                          style:
+                              TextStyle(color: PurpleColorPalette.highLight2)),
                     ),
                   ),
                   SizedBox(
-                    height: (SizeConfig.screenHeight / 16) * unfinishedTasks.length,
+                    height:
+                        (SizeConfig.screenHeight / 16) * unfinishedTasks.length,
                     child: Container(
                       width: SizeConfig.screenWidth * 0.8,
                       decoration: BoxDecoration(
-                          border: Border.all(color: ColorPalette.lightPink),
+                          border:
+                              Border.all(color: PurpleColorPalette.highLight2),
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
@@ -103,10 +109,11 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                               height: 50,
                               child: Row(children: [
                                 Icon(Icons.cancel,
-                                    color: ColorPalette.lightPink),
+                                    color: PurpleColorPalette.highLight2),
                                 Text(
                                   ' ${unfinishedTasks[index]}',
-                                  style: TextStyle(color: ColorPalette.pink),
+                                  style: TextStyle(
+                                      color: PurpleColorPalette.accent),
                                 )
                               ]),
                             );
@@ -114,12 +121,13 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                     ),
                   ),
                   Padding(
-                    padding:
-                         EdgeInsets.only(left: SizeConfig.screenWidth/8, bottom: 20, top: 40),
+                    padding: EdgeInsets.only(
+                        left: SizeConfig.screenWidth / 8, bottom: 20, top: 40),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text("How was Your day?",
-                          style: TextStyle(color: ColorPalette.lightPink)),
+                          style:
+                              TextStyle(color: PurpleColorPalette.highLight2)),
                     ),
                   ),
                   Center(
@@ -127,28 +135,29 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                       alignment: Alignment.center,
                       size: 50,
                       filledIcon: Icons.favorite,
-                      filledColor: ColorPalette.purple,
-                      emptyColor: ColorPalette.pink,
+                      filledColor: PurpleColorPalette.secondaryColor,
+                      emptyColor: PurpleColorPalette.accent,
                       emptyIcon: Icons.heart_broken,
                       initialRating: 4,
                       maxRating: 5,
                     ),
                   ),
                   Padding(
-                    padding:
-                         EdgeInsets.only(left: SizeConfig.screenWidth/8, bottom: 20, top: 40),
+                    padding: EdgeInsets.only(
+                        left: SizeConfig.screenWidth / 8, bottom: 20, top: 40),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text("Your Thoughts",
-                          style: TextStyle(color: ColorPalette.pink)),
+                          style: TextStyle(color: PurpleColorPalette.accent)),
                     ),
                   ),
                   SizedBox(
                     child: Container(
-                      margin: EdgeInsets.only(bottom: SizeConfig.screenHeight/20),
+                      margin:
+                          EdgeInsets.only(bottom: SizeConfig.screenHeight / 20),
                       width: SizeConfig.screenWidth * 0.8,
                       decoration: BoxDecoration(
-                          border: Border.all(color: ColorPalette.pink),
+                          border: Border.all(color: PurpleColorPalette.accent),
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: Padding(
                         padding: const EdgeInsets.only(

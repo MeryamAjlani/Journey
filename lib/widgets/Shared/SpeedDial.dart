@@ -19,14 +19,14 @@ class SpeedDialWidget extends StatelessWidget {
     return SpeedDial(
       animatedIcon: AnimatedIcons.menu_close,
       animatedIconTheme: IconThemeData(size: 28.0),
-      backgroundColor: ColorPalette.pink,
+      backgroundColor: PurpleColorPalette.accent,
       visible: true,
-      overlayColor: ColorPalette.background,
+      overlayColor: PurpleColorPalette.background,
       curve: Curves.bounceInOut,
       children: [
         SpeedDialChild(
           child: Icon(Icons.create, color: Colors.white),
-          backgroundColor: ColorPalette.pink,
+          backgroundColor: PurpleColorPalette.accent,
           onTap: () => showModalBottomSheet<void>(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
@@ -40,46 +40,49 @@ class SpeedDialWidget extends StatelessWidget {
           label: 'Add',
           labelStyle:
               TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
-          labelBackgroundColor: ColorPalette.background,
+          labelBackgroundColor: PurpleColorPalette.background,
         ),
         SpeedDialChild(
           child: Icon(Icons.delete, color: Colors.white),
-          backgroundColor: ColorPalette.pink,
+          backgroundColor: PurpleColorPalette.accent,
           onTap: () => {
-        if(groceries.isEmpty)
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              backgroundColor: Colors.transparent,
-              behavior: SnackBarBehavior.floating,
-              elevation: 0,
-              content:CustomErrorWidget() ,
-            ))
-            else{ context.read<GroceriesBloc>().add(DeleteAllGroceries())}
-            
+            if (groceries.isEmpty)
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: Colors.transparent,
+                behavior: SnackBarBehavior.floating,
+                elevation: 0,
+                content: CustomErrorWidget(),
+              ))
+            else
+              {context.read<GroceriesBloc>().add(DeleteAllGroceries())}
           },
           label: 'Clear',
           labelStyle:
               TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
-          labelBackgroundColor: ColorPalette.background,
+          labelBackgroundColor: PurpleColorPalette.background,
         ),
         SpeedDialChild(
           child: Icon(Icons.save, color: Colors.white),
-          backgroundColor: ColorPalette.pink,
+          backgroundColor: PurpleColorPalette.accent,
           onTap: () => {
-            
-            if(groceries.isEmpty)  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              backgroundColor: Colors.transparent,
-              behavior: SnackBarBehavior.floating,
-              elevation: 0,
-              content:CustomErrorWidget() ,
-            ))
-            else 
-            {showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => GroceriesAlertDialog())}},
+            if (groceries.isEmpty)
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: Colors.transparent,
+                behavior: SnackBarBehavior.floating,
+                elevation: 0,
+                content: CustomErrorWidget(),
+              ))
+            else
+              {
+                showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => GroceriesAlertDialog())
+              }
+          },
           label: 'Add to Expenses',
           labelStyle:
               TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
-          labelBackgroundColor: ColorPalette.background,
+          labelBackgroundColor: PurpleColorPalette.background,
         ),
       ],
     );

@@ -11,7 +11,6 @@ import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:my_journey/widgets/Shared/CustomListTile.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-
 class MonthlyBudgetScreen extends StatefulWidget {
   const MonthlyBudgetScreen({Key? key}) : super(key: key);
 
@@ -25,19 +24,18 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
     final monthlySpendings =
         context.watch<BudgetBloc>().state.monthlyFixedSpendings;
     final moneyLeft = context.watch<BudgetBloc>().state.budgetLeft;
-    final initialBidget =
-        context.watch<BudgetBloc>().state.initialBudget;
+    final initialBidget = context.watch<BudgetBloc>().state.initialBudget;
     final percentage = moneyLeft / initialBidget;
     return BlocBuilder<BudgetBloc, BudgetState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: ColorPalette.background,
+          backgroundColor: PurpleColorPalette.background,
           body: Column(
             children: [
               Container(
                 height: SizeConfig.screenHeight / 4,
                 decoration: BoxDecoration(
-                  color: ColorPalette.background,
+                  color: PurpleColorPalette.background,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -60,7 +58,7 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
                         animationDuration: 200,
                         percent: percentage,
                         backgroundColor: Color.fromARGB(255, 25, 4, 40),
-                        progressColor: ColorPalette.pink,
+                        progressColor: PurpleColorPalette.accent,
                       ),
                     ),
                   ]),
@@ -82,7 +80,12 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
                         shrinkWrap: true,
                         itemCount: monthlySpendings.length,
                         itemBuilder: (context, index) {
-                          return CustomListTile(title: monthlySpendings[index].title,date:  monthlySpendings[index].date,icon:  monthlySpendings[index].icon,status:  monthlySpendings[index].isPaid,);
+                          return CustomListTile(
+                            title: monthlySpendings[index].title,
+                            date: monthlySpendings[index].date,
+                            icon: monthlySpendings[index].icon,
+                            status: monthlySpendings[index].isPaid,
+                          );
                         },
                       ),
                     ]),
@@ -96,4 +99,3 @@ class _MonthlyBudgetScreenState extends State<MonthlyBudgetScreen> {
     );
   }
 }
-

@@ -7,16 +7,14 @@ import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
 
 class CustomContainer extends StatefulWidget {
-  CustomContainer(
-      {Key? key,
-      required this.title,
-      required this.widget,
-      })
-      : super(key: key);
+  CustomContainer({
+    Key? key,
+    required this.title,
+    required this.widget,
+  }) : super(key: key);
 
   final String title;
   Widget widget;
-
 
   @override
   State<CustomContainer> createState() => _CustomContainerState();
@@ -32,21 +30,23 @@ class _CustomContainerState extends State<CustomContainer> {
             borderRadius: BorderRadius.circular(20),
             color: const Color.fromARGB(255, 25, 4, 40)),
         child: Padding(
-           padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           child: Column(children: [
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding:
-                    EdgeInsets.only(left: SizeConfig.screenWidth / 10, bottom: 20),
+                padding: EdgeInsets.only(
+                    left: SizeConfig.screenWidth / 10, bottom: 20),
                 child: Text(
                   widget.title,
                   style: const TextStyle(
-                      color: ColorPalette.lightPink, fontSize: 20, fontFamily: 'Pacifico'),
+                      color: PurpleColorPalette.highLight2,
+                      fontSize: 20,
+                      fontFamily: 'Pacifico'),
                 ),
               ),
             ),
-           widget.widget
+            widget.widget
           ]),
         ),
       ),

@@ -10,7 +10,7 @@ import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/constants/WidgetStyle.dart';
 import 'package:my_journey/models/Task.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/Shared/CustomShake%20Widget.dart';
+import 'package:my_journey/widgets/Shared/CustomShakeWidget.dart';
 import 'package:my_journey/widgets/Shared/ShakeStateWidget.dart';
 import 'package:my_journey/widgets/Shared/ShakeWidget.dart';
 import 'package:uuid/uuid.dart';
@@ -34,7 +34,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
       padding: mediaQueryData.viewInsets,
       child: Container(
         decoration: const BoxDecoration(
-            color: ColorPalette.background,
+            color: PurpleColorPalette.background,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: SizedBox(
@@ -49,7 +49,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                     alignment: Alignment.topLeft,
                     child: const Text(
                       'Add Task',
-                      style: TextStyle(color: ColorPalette.lightPink),
+                      style: TextStyle(color: PurpleColorPalette.highLight2),
                     ),
                   ),
                   const SizedBox(
@@ -57,8 +57,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                   ),
                   Padding(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: CustomShakeWidget(formKey: _textFieldErrorShakeKey, title: 'Task Title', controller: titleController)),
-  
+                      child: CustomInputWidget(
+                          formKey: _textFieldErrorShakeKey,
+                          title: 'Task Title',
+                          controller: titleController)),
                   Padding(
                     padding: EdgeInsets.only(top: SizeConfig.screenHeight / 30),
                     child: Row(
@@ -68,7 +70,8 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                           height: 40,
                           width: 90,
                           child: TextButton(
-                            style: WidgetStyle.getButtonStyle(ColorPalette.purple),
+                            style: WidgetStyle.getButtonStyle(
+                                PurpleColorPalette.secondaryColor),
                             onPressed: () {
                               Navigator.pop(context);
                             },
@@ -77,12 +80,12 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                           ),
                         ),
                         SizedBox(
-                             height: 40,
-                             width: 120,
+                          height: 40,
+                          width: 120,
                           child: TextButton(
-                            style: WidgetStyle.getButtonStyle(ColorPalette.pink),
+                            style: WidgetStyle.getButtonStyle(
+                                PurpleColorPalette.accent),
                             onPressed: () {
-                            
                               setState(() {
                                 _isTextFieldError =
                                     (titleController.text.isEmpty);

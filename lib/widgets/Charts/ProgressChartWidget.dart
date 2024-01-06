@@ -21,8 +21,9 @@ class _ProgressChartState extends State<ProgressChart> {
   @override
   Widget build(BuildContext context) {
     final List<ChartData> chartData = [
-      ChartData('Finished', widget.numFinished, ColorPalette.lightGreen),
-      ChartData('Unfinished', widget.numUnfinished, ColorPalette.lightPink),
+      ChartData('Finished', widget.numFinished, PurpleColorPalette.highLight1),
+      ChartData(
+          'Unfinished', widget.numUnfinished, PurpleColorPalette.highLight2),
     ];
     return Center(
       child: SizedBox(
@@ -34,13 +35,13 @@ class _ProgressChartState extends State<ProgressChart> {
                 iconHeight: 20,
                 iconWidth: 20),
             series: <CircularSeries>[
-          // Renders doughnut chart
-          DoughnutSeries<ChartData, String>(
-              dataSource: chartData,
-              pointColorMapper: (ChartData data, _) => data.color,
-              xValueMapper: (ChartData data, _) => data.x,
-              yValueMapper: (ChartData data, _) => data.y)
-        ]),
+              // Renders doughnut chart
+              DoughnutSeries<ChartData, String>(
+                  dataSource: chartData,
+                  pointColorMapper: (ChartData data, _) => data.color,
+                  xValueMapper: (ChartData data, _) => data.x,
+                  yValueMapper: (ChartData data, _) => data.y)
+            ]),
       ),
     );
   }

@@ -7,7 +7,7 @@ import 'package:my_journey/constants/ColorPalette.dart';
 import 'package:my_journey/constants/WidgetStyle.dart';
 import 'package:my_journey/models/SpendingEntry.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
-import 'package:my_journey/widgets/Shared/CustomShake%20Widget.dart';
+import 'package:my_journey/widgets/Shared/CustomShakeWidget.dart';
 import 'package:my_journey/widgets/Shared/ShakeStateWidget.dart';
 import 'package:my_journey/widgets/Shared/ShakeWidget.dart';
 import 'package:uuid/uuid.dart';
@@ -35,7 +35,7 @@ class _DialogWidgetState extends State<DialogWidget> {
       padding: mediaQueryData.viewInsets,
       child: Container(
         decoration: const BoxDecoration(
-            color: ColorPalette.background,
+            color: PurpleColorPalette.background,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         height: 3 * SizeConfig.screenHeight / 8,
@@ -50,18 +50,18 @@ class _DialogWidgetState extends State<DialogWidget> {
                     alignment: Alignment.topLeft,
                     child: const Text(
                       'Add Entry',
-                      style: TextStyle(color: ColorPalette.lightPink),
+                      style: TextStyle(color: PurpleColorPalette.highLight2),
                     ),
                   ),
                   Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
-                      child: CustomShakeWidget(
+                      child: CustomInputWidget(
                           formKey: descriptionFieldErrorShakeKey,
                           title: 'Description',
                           controller: _controllerDescriptionField)),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 10),
-                    child: CustomShakeWidget(
+                    child: CustomInputWidget(
                       formKey: amountFieldErrorShakeKey,
                       title: 'Amount',
                       controller: _controllerAmountField,
@@ -79,7 +79,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                             width: 90,
                             child: TextButton(
                               style: WidgetStyle.getButtonStyle(
-                                  ColorPalette.purple),
+                                  PurpleColorPalette.secondaryColor),
                               onPressed: () {
                                 Navigator.pop(context);
                               },
@@ -88,11 +88,11 @@ class _DialogWidgetState extends State<DialogWidget> {
                             ),
                           ),
                           SizedBox(
-                                height: 40,
-                                width: 120,
+                            height: 40,
+                            width: 120,
                             child: TextButton(
-                              style:
-                                  WidgetStyle.getButtonStyle(ColorPalette.pink),
+                              style: WidgetStyle.getButtonStyle(
+                                  PurpleColorPalette.accent),
                               onPressed: () {
                                 setState(() {
                                   isAmountFieldError =

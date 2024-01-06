@@ -9,7 +9,7 @@ import 'package:my_journey/constants/WidgetStyle.dart';
 import 'package:my_journey/models/MonthlySpending.dart';
 import 'package:my_journey/screensize/ScreenSize.dart';
 import 'package:my_journey/widgets/Shared/CustomContainer.dart';
-import 'package:my_journey/widgets/Shared/CustomShake%20Widget.dart';
+import 'package:my_journey/widgets/Shared/CustomShakeWidget.dart';
 import 'package:my_journey/widgets/Shared/ShakeStateWidget.dart';
 import 'package:my_journey/widgets/Shared/ShakeWidget.dart';
 import 'package:my_journey/widgets/Shared/SideBar.dart';
@@ -25,8 +25,8 @@ class ParamsScreen extends StatefulWidget {
   @override
   State<ParamsScreen> createState() => _ParamsScreenState();
 }
-class _ParamsScreenState extends State<ParamsScreen> {
 
+class _ParamsScreenState extends State<ParamsScreen> {
   var _controllerAmountField = TextEditingController();
   bool isAmountFieldError = false;
   final amountFieldErrorShakeKey = GlobalKey<ShakeWidgetState>();
@@ -39,15 +39,15 @@ class _ParamsScreenState extends State<ParamsScreen> {
 
   _pickIcon() async {
     IconData? icon = await FlutterIconPicker.showIconPicker(context,
-        backgroundColor: ColorPalette.background,
-        iconColor: ColorPalette.lightPink,
+        backgroundColor: PurpleColorPalette.background,
+        iconColor: PurpleColorPalette.highLight2,
         title: Text(
           "Pick an icon",
-          style: TextStyle(color: ColorPalette.lightPink),
+          style: TextStyle(color: PurpleColorPalette.highLight2),
         ),
         closeChild: Text(
           'Close',
-          style: TextStyle(color: ColorPalette.lightPink),
+          style: TextStyle(color: PurpleColorPalette.highLight2),
         ),
         iconPackModes: [IconPack.cupertino]);
 
@@ -71,11 +71,11 @@ class _ParamsScreenState extends State<ParamsScreen> {
           appBar: AppBar(
             iconTheme: IconThemeData(color: Colors.white),
             backgroundColor: Color.fromARGB(255, 40, 7, 63),
-            title:Text("Settings",
-              style: TextStyle(
-                  color: Colors.white, fontSize: 20, fontFamily: 'Pacifico')) ,
+            title: Text("Settings",
+                style: TextStyle(
+                    color: Colors.white, fontSize: 20, fontFamily: 'Pacifico')),
           ),
-          backgroundColor: ColorPalette.background,
+          backgroundColor: PurpleColorPalette.background,
           body: SafeArea(
               child: Padding(
             padding:
@@ -88,7 +88,7 @@ class _ParamsScreenState extends State<ParamsScreen> {
                   title: 'My initial Budget',
                   widget: Column(
                     children: [
-                      CustomShakeWidget(
+                      CustomInputWidget(
                         formKey: initialBudgetFieldErrorShakeKey,
                         controller: initialBudgetController,
                         keyboardType:
@@ -96,45 +96,43 @@ class _ParamsScreenState extends State<ParamsScreen> {
                         title: 'Initial Budget',
                       ),
                       Padding(
-                           padding: const EdgeInsets.only(top: 40),
+                        padding: const EdgeInsets.only(top: 40),
                         child: SizedBox(
-                                  height: 40,
-                                  width: 120,
-                                  child: ElevatedButton(
-                                    style: WidgetStyle.getButtonStyle(
-                                        ColorPalette.pink),
-                                    onPressed: () {
-                                      setState(() {
-                                        initialBudgetFieldError =
-                                            (initialBudgetController.text.isEmpty);
-                                      });
-                                      if (initialBudgetFieldError) {
-                                        initialBudgetFieldErrorShakeKey.currentState
-                                            ?.shakeWidget();
-                                      }
-                                      
-                                      if (!isAmountFieldError &&
-                                          !isDescriptionFieldError &&
-                                          _icon != null) {
-                                        var id = Uuid().v4();
-                                        var entry = MonthlySpendingEntry(
-                                            id: id,
-                                            title:
-                                                _controllerDescriptionField.text,
-                                            price: double.parse(
-                                                _controllerAmountField.text),
-                                            icon: _icon);
-                                        context.read<BudgetBloc>().add(
-                                            AddMonthlySpendingsEntry(
-                                                entry: entry));
-                                      }
-                                    },
-                                    child: const Text(
-                                      'Add',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
+                          height: 40,
+                          width: 120,
+                          child: ElevatedButton(
+                            style: WidgetStyle.getButtonStyle(
+                                PurpleColorPalette.accent),
+                            onPressed: () {
+                              setState(() {
+                                initialBudgetFieldError =
+                                    (initialBudgetController.text.isEmpty);
+                              });
+                              if (initialBudgetFieldError) {
+                                initialBudgetFieldErrorShakeKey.currentState
+                                    ?.shakeWidget();
+                              }
+
+                              if (!isAmountFieldError &&
+                                  !isDescriptionFieldError &&
+                                  _icon != null) {
+                                var id = Uuid().v4();
+                                var entry = MonthlySpendingEntry(
+                                    id: id,
+                                    title: _controllerDescriptionField.text,
+                                    price: double.parse(
+                                        _controllerAmountField.text),
+                                    icon: _icon);
+                                context.read<BudgetBloc>().add(
+                                    AddMonthlySpendingsEntry(entry: entry));
+                              }
+                            },
+                            child: const Text(
+                              'Add',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -145,7 +143,7 @@ class _ParamsScreenState extends State<ParamsScreen> {
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 10),
-                          child: CustomShakeWidget(
+                          child: CustomInputWidget(
                             formKey: descriptionFieldErrorShakeKey,
                             title: 'Description',
                             controller: _controllerDescriptionField,
@@ -154,7 +152,7 @@ class _ParamsScreenState extends State<ParamsScreen> {
                         ),
                         Padding(
                             padding: EdgeInsets.symmetric(vertical: 10),
-                            child: CustomShakeWidget(
+                            child: CustomInputWidget(
                               formKey: amountFieldErrorShakeKey,
                               title: 'Amount',
                               controller: _controllerAmountField,
@@ -176,7 +174,7 @@ class _ParamsScreenState extends State<ParamsScreen> {
                                   shakeDuration: Duration(milliseconds: 500),
                                   child: ElevatedButton(
                                     style: WidgetStyle.getButtonStyle(
-                                        ColorPalette.pink),
+                                        PurpleColorPalette.accent),
                                     onPressed: _pickIcon,
                                     child: const Text(
                                       'IconPicker',
@@ -190,7 +188,7 @@ class _ParamsScreenState extends State<ParamsScreen> {
                                 width: 120,
                                 child: ElevatedButton(
                                   style: WidgetStyle.getButtonStyle(
-                                      ColorPalette.pink),
+                                      PurpleColorPalette.accent),
                                   onPressed: () {
                                     setState(() {
                                       isAmountFieldError =
@@ -261,13 +259,13 @@ class _ParamsScreenState extends State<ParamsScreen> {
                                 border: Border(
                                   left: BorderSide(
                                       width: 4.0,
-                                      color: ColorPalette.lightGreen),
+                                      color: PurpleColorPalette.highLight1),
                                 ),
                               ),
                               child: ListTile(
                                 trailing: Icon(
                                   _icon,
-                                  color: ColorPalette.lightGreen,
+                                  color: PurpleColorPalette.highLight1,
                                 ),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(

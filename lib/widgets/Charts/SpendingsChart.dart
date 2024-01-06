@@ -11,8 +11,8 @@ class LineChartSample2 extends StatefulWidget {
 
 class _LineChartSample2State extends State<LineChartSample2> {
   List<Color> gradientColors = [
-    ColorPalette.lightGreen,
-    ColorPalette.lightPink,
+    PurpleColorPalette.highLight1,
+    PurpleColorPalette.highLight2,
   ];
 
   bool showAvg = false;
@@ -32,7 +32,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
               bottom: 12,
             ),
             child: LineChart(
-               mainData(),
+              mainData(),
             ),
           ),
         ),
@@ -61,7 +61,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
-      color: ColorPalette.lightPink,
+      color: PurpleColorPalette.highLight2,
       fontSize: 10,
     );
     Widget text;
@@ -89,7 +89,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
-      color: ColorPalette.lightPink,
+      color: PurpleColorPalette.highLight2,
       fontSize: 12,
     );
     String text = '0';
@@ -199,6 +199,4 @@ class _LineChartSample2State extends State<LineChartSample2> {
       ],
     );
   }
-
-
 }

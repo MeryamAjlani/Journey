@@ -12,13 +12,13 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  List<bool> _isSelected = [true,false];
+  List<bool> _isSelected = [true, false];
   bool light = true;
   @override
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-          canvasColor: ColorPalette
+          canvasColor: PurpleColorPalette
               .background //This will change the drawer background to blue.
           //other styles
           ),
@@ -35,13 +35,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
               ),
               decoration: BoxDecoration(
-                  color: ColorPalette.background,
+                  color: PurpleColorPalette.background,
                   image: DecorationImage(
                       fit: BoxFit.fill,
                       image: AssetImage('assets/images/background.jpg'))),
             ),
             Container(
-              color: ColorPalette.background,
+              color: PurpleColorPalette.background,
               child: Column(
                 children: [
                   ListTile(
@@ -53,16 +53,19 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       'Calendar',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onTap: () => {Navigator.of(context).pushNamed('/calendar'),
-                           setState(() {
-              for (int index = 0; index < _isSelected.length; index++) {
-                if (index == 0) {
-                  _isSelected[index] = true;
-                } else {
-                  _isSelected[index] = false;
-                }
-              }
-            })
+                    onTap: () => {
+                      Navigator.of(context).pushNamed('/calendar'),
+                      setState(() {
+                        for (int index = 0;
+                            index < _isSelected.length;
+                            index++) {
+                          if (index == 0) {
+                            _isSelected[index] = true;
+                          } else {
+                            _isSelected[index] = false;
+                          }
+                        }
+                      })
                     },
                   ),
                   ListTile(
@@ -74,29 +77,32 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       'Settings',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onTap: () => {Navigator.of(context).pushNamed('/settings'),
-                                    setState(() {
-              for (int index = 0; index < _isSelected.length; index++) {
-                if (index == 1) {
-                  _isSelected[index] = true;
-                } else {
-                  _isSelected[index] = false;
-                }
-              }
-            })},
+                    onTap: () => {
+                      Navigator.of(context).pushNamed('/settings'),
+                      setState(() {
+                        for (int index = 0;
+                            index < _isSelected.length;
+                            index++) {
+                          if (index == 1) {
+                            _isSelected[index] = true;
+                          } else {
+                            _isSelected[index] = false;
+                          }
+                        }
+                      })
+                    },
                   ),
-             
-               Switch(
-      // This bool value toggles the switch.
-      value: light,
-      activeColor: ColorPalette.pink,
-      onChanged: (bool value) {
-        // This is called when the user toggles the switch.
-        setState(() {
-          light = value;
-        });
-      },
-    )
+                  Switch(
+                    // This bool value toggles the switch.
+                    value: light,
+                    activeColor: PurpleColorPalette.accent,
+                    onChanged: (bool value) {
+                      // This is called when the user toggles the switch.
+                      setState(() {
+                        light = value;
+                      });
+                    },
+                  )
                 ],
               ),
             ),

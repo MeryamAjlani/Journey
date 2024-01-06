@@ -19,7 +19,6 @@ class ConfigurationScreen extends StatefulWidget {
 }
 
 class _ConfigurationScreenState extends State<ConfigurationScreen> {
-
   @override
   Widget build(BuildContext context) {
     final tasks = context.watch<TasksBloc>().state.allTasks;
@@ -39,10 +38,10 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                 return BottomSheetWidget();
               },
             ),
-            backgroundColor: ColorPalette.pink,
+            backgroundColor: PurpleColorPalette.accent,
             child: const Icon(Icons.add),
           ),
-          backgroundColor: ColorPalette.background,
+          backgroundColor: PurpleColorPalette.background,
           body: SafeArea(
             child: Column(
               children: [
@@ -52,65 +51,65 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                         ? EmptyWidget(
                             imagePath: "assets/images/Pink Paw.png",
                             message: "No tasks added yet !",
-                            color: ColorPalette.lightPink)
+                            color: PurpleColorPalette.highLight2)
                         : ListView.separated(
                             shrinkWrap: true,
                             itemCount: tasks.length,
                             itemBuilder: (context, index) {
                               return Padding(
-                                    padding: EdgeInsets.only(
-                                      
-                                      right: SizeConfig.screenWidth / 10,
-                                      left: SizeConfig.screenWidth / 10),
-                                    child: Dismissible(
-                                      key: UniqueKey(),
-                                      onDismissed: (direction) {
-                                        context.read<TasksBloc>().add(
-                                            DeleteTask(task: tasks[index]));
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          border: Border(
-                                            left: BorderSide(
-                                                width: 4.0,
-                                                color: tasks[index].isDone!
-                                                    ? ColorPalette.lightGreen
-                                                    : ColorPalette.pink),
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: ListTile(
-                                            onTap: () => {
-                                              context.read<TasksBloc>().add(
-                                                  UpdateTask(
-                                                      task: tasks[index]))
-                                            },
-                                            trailing: tasks[index].isDone!
-                                                ? Transform.rotate(
-                                                    angle: -math.pi / 4,
-                                                    child: SizedBox(
-                                                        height: 30,
-                                                        width: 30,
-                                                        child: Image.asset(
-                                                            'assets/images/Green Paw.png')),
-                                                  )
-                                                : null,
-                                            title: Text(
-                                              tasks[index].title,
-                                              style: const TextStyle(
-                                                  color: Colors.white),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
+                                padding: EdgeInsets.only(
+                                    right: SizeConfig.screenWidth / 10,
+                                    left: SizeConfig.screenWidth / 10),
+                                child: Dismissible(
+                                  key: UniqueKey(),
+                                  onDismissed: (direction) {
+                                    context
+                                        .read<TasksBloc>()
+                                        .add(DeleteTask(task: tasks[index]));
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(
+                                            width: 4.0,
+                                            color: tasks[index].isDone!
+                                                ? PurpleColorPalette.highLight1
+                                                : PurpleColorPalette.accent),
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ListTile(
+                                        onTap: () => {
+                                          context.read<TasksBloc>().add(
+                                              UpdateTask(task: tasks[index]))
+                                        },
+                                        trailing: tasks[index].isDone!
+                                            ? Transform.rotate(
+                                                angle: -math.pi / 4,
+                                                child: SizedBox(
+                                                    height: 30,
+                                                    width: 30,
+                                                    child: Image.asset(
+                                                        'assets/images/Green Paw.png')),
+                                              )
+                                            : null,
+                                        title: Text(
+                                          tasks[index].title,
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                          textAlign: TextAlign.left,
                                         ),
                                       ),
                                     ),
-                                  );
+                                  ),
+                                ),
+                              );
                             },
                             separatorBuilder: (context, index) {
-                              return Divider(indent: SizeConfig.screenWidth/10,
-                              endIndent: SizeConfig.screenWidth/10,
+                              return Divider(
+                                indent: SizeConfig.screenWidth / 10,
+                                endIndent: SizeConfig.screenWidth / 10,
                               );
                             },
                           )),

@@ -27,7 +27,7 @@ class _HomeBudgetScreenState extends State<HomeBudgetScreen> {
   }
 
   PageController _pageController = PageController();
-  List<Widget> _screens = [ BudgetScreen(),MonthlyBudgetScreen()];
+  List<Widget> _screens = [BudgetScreen(), MonthlyBudgetScreen()];
 
   int _selectedIndex = 0;
   List<bool> isSelected = [true, false];
@@ -35,7 +35,7 @@ class _HomeBudgetScreenState extends State<HomeBudgetScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorPalette.background,
+        backgroundColor: PurpleColorPalette.background,
         title: Container(
           child: Center(
             child: ToggleButtons(
@@ -63,7 +63,7 @@ class _HomeBudgetScreenState extends State<HomeBudgetScreen> {
                       ? BoxDecoration(
                           border: Border(
                             bottom: BorderSide(
-                                width: 2.0, color: ColorPalette.pink),
+                                width: 2.0, color: PurpleColorPalette.accent),
                           ),
                         )
                       : null,
@@ -71,7 +71,8 @@ class _HomeBudgetScreenState extends State<HomeBudgetScreen> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 10),
-                      child: Text('Daily ', style: TextStyle(fontSize: 18,color: Colors.white)),
+                      child: Text('Daily ',
+                          style: TextStyle(fontSize: 18, color: Colors.white)),
                     ),
                   ),
                 ),
@@ -81,7 +82,7 @@ class _HomeBudgetScreenState extends State<HomeBudgetScreen> {
                       ? BoxDecoration(
                           border: Border(
                             bottom: BorderSide(
-                                width: 2.0, color: ColorPalette.pink),
+                                width: 2.0, color: PurpleColorPalette.accent),
                           ),
                         )
                       : null,
@@ -89,7 +90,8 @@ class _HomeBudgetScreenState extends State<HomeBudgetScreen> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 10),
-                      child: Text('Monthly ', style: TextStyle(fontSize: 18,color: Colors.white)),
+                      child: Text('Monthly ',
+                          style: TextStyle(fontSize: 18, color: Colors.white)),
                     ),
                   ),
                 ),

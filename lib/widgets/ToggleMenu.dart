@@ -19,24 +19,25 @@ class _ToggleMenuState extends State<ToggleMenu> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-     title: Container(
+      title: Container(
         width: SizeConfig.screenWidth,
         color: Colors.transparent,
         child: ToggleButtons(
           isSelected: isSelected,
-          selectedColor: ColorPalette.pink,
+          selectedColor: PurpleColorPalette.accent,
           color: Colors.white,
           fillColor: Colors.transparent,
           renderBorder: false,
           //splashColor: Colors.red,
-          highlightColor: ColorPalette.pink,
+          highlightColor: PurpleColorPalette.accent,
           children: <Widget>[
             Container(
               width: SizeConfig.screenWidth / 2,
               decoration: isSelected[0]
                   ? BoxDecoration(
                       border: Border(
-                        bottom: BorderSide(width: 2.0, color: ColorPalette.pink),
+                        bottom: BorderSide(
+                            width: 2.0, color: PurpleColorPalette.accent),
                       ),
                     )
                   : null,
@@ -53,7 +54,8 @@ class _ToggleMenuState extends State<ToggleMenu> {
               decoration: isSelected[1]
                   ? BoxDecoration(
                       border: Border(
-                        bottom: BorderSide(width: 2.0, color: ColorPalette.pink),
+                        bottom: BorderSide(
+                            width: 2.0, color: PurpleColorPalette.accent),
                       ),
                     )
                   : null,
@@ -61,7 +63,8 @@ class _ToggleMenuState extends State<ToggleMenu> {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  child: Text('Monthly Expenses', style: TextStyle(fontSize: 18)),
+                  child:
+                      Text('Monthly Expenses', style: TextStyle(fontSize: 18)),
                 ),
               ),
             ),

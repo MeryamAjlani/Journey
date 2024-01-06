@@ -25,13 +25,12 @@ class _PurchaseListScreenState extends State<PurchaseListScreen> {
     String date = DateFormat.yMMMEd().format(DateTime.now());
     //final spendings = context.watch<GroceriesBlocBloc>().state.allSpendings;
     final groceries = context.watch<GroceriesBloc>().state.allGroceries;
-     print(groceries);
+    print(groceries);
     return BlocBuilder<GroceriesBloc, GroceryState>(
-     
       builder: (context, state) {
         return Scaffold(
             floatingActionButton: SpeedDialWidget(),
-            backgroundColor: ColorPalette.background,
+            backgroundColor: PurpleColorPalette.background,
             body: SafeArea(
               child: Column(
                 children: [
@@ -41,7 +40,7 @@ class _PurchaseListScreenState extends State<PurchaseListScreen> {
                         ? EmptyWidget(
                             imagePath: "assets/images/Pink Paw.png",
                             message: "No Groceries added yet !",
-                            color: ColorPalette.lightPink)
+                            color: PurpleColorPalette.highLight2)
                         : Column(
                             children: [
                               Padding(
@@ -52,33 +51,34 @@ class _PurchaseListScreenState extends State<PurchaseListScreen> {
                                   alignment: Alignment.centerLeft,
                                   child: Text("Grocery list for the  $date ",
                                       style: const TextStyle(
-                                          color: ColorPalette.lightPink,
+                                          color: PurpleColorPalette.highLight2,
                                           fontSize: 16)),
                                 ),
                               ),
                               ListView.separated(
-                                
-                            shrinkWrap: true,
-                            itemCount: groceries.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
+                                shrinkWrap: true,
+                                itemCount: groceries.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
                                     padding: EdgeInsets.only(
-                                      
-                                      right: SizeConfig.screenWidth / 10,
-                                      left: SizeConfig.screenWidth / 10),
+                                        right: SizeConfig.screenWidth / 10,
+                                        left: SizeConfig.screenWidth / 10),
                                     child: Dismissible(
                                       key: UniqueKey(),
                                       onDismissed: (direction) {
                                         context.read<GroceriesBloc>().add(
-                                            DeleteGroceryEntry(groceryEntry: groceries[index]));
+                                            DeleteGroceryEntry(
+                                                groceryEntry:
+                                                    groceries[index]));
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
                                           border: Border(
-                                            left: BorderSide(
-                                                width: 4.0,
-                                                color: ColorPalette.lightGreen,)
-                                          ),
+                                              left: BorderSide(
+                                            width: 4.0,
+                                            color:
+                                                PurpleColorPalette.highLight1,
+                                          )),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -86,7 +86,8 @@ class _PurchaseListScreenState extends State<PurchaseListScreen> {
                                             onTap: () => {
                                               context.read<GroceriesBloc>().add(
                                                   UpdateGroceryEntry(
-                                                    groceryEntry: groceries[index]))
+                                                      groceryEntry:
+                                                          groceries[index]))
                                             },
                                             trailing: groceries[index].done
                                                 ? Transform.rotate(
@@ -109,14 +110,14 @@ class _PurchaseListScreenState extends State<PurchaseListScreen> {
                                       ),
                                     ),
                                   );
-                            },
-                            separatorBuilder: (context, index) {
-                              return Divider(indent: SizeConfig.screenWidth/10,
-                              endIndent: SizeConfig.screenWidth/10,
-                              );
-                            },
-                          )
-                              
+                                },
+                                separatorBuilder: (context, index) {
+                                  return Divider(
+                                    indent: SizeConfig.screenWidth / 10,
+                                    endIndent: SizeConfig.screenWidth / 10,
+                                  );
+                                },
+                              )
                             ],
                           ),
                   ),

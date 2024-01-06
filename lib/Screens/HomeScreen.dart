@@ -93,7 +93,7 @@ class _HomeState extends State<Home> {
             )
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: ColorPalette.pink,
+          selectedItemColor: PurpleColorPalette.accent,
           onTap: _onItemTapped,
         ));
   }
